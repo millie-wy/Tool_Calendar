@@ -11,6 +11,6 @@ body {
 
 /* REUSABLE CLASSES */
 .flex { display: flex; }
-.fixed { display: fixed; }
+.fixed { position: fixed; }
 .justify-center { justify-content: center; }
 .text-center { text-align: center; }

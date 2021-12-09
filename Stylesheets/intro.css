@@ -1,6 +1,7 @@
 aside {
     background-color: greenyellow;
     position: fixed;
+    top: 5rem;
     height: calc(100vh - 4rem);
     width: 350px;
 }

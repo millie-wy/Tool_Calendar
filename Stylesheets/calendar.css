@@ -1,11 +1,17 @@
 main { 
     background-color: sandybrown; 
+    position: fixed;
+    top: 5rem;
     display: flex; 
     justify-content: center; 
     align-items: center; 
     margin-left: 350px; 
     width: calc(100vw - 350px); 
     overflow-y: scroll; 
+}
+
+h1 {
+    text-align: center;
 }
 
 .calendar { 
