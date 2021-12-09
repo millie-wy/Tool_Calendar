@@ -1,13 +1,88 @@
-main { background-color: sandybrown; display: flex; justify-content: center; align-items: center; margin-left: 350px; width: calc(100vw - 350px); overflow-y: scroll; }
-.calendar { width: 800px; height: 650px; background-color: rgb(115, 115, 206); border-radius: 48px; }
-.month { display: flex; justify-content: space-between; border-radius: 3rem 3rem 0px 0px; background-color: rgb(53, 165, 53); align-items: center; width: 100%; height: 6rem; padding: 0px 2rem; }
-.month i { cursor: pointer; }
-.month h1 { text-transform: uppercase; margin-bottom: 1rem; }
-.month p { }
-.weekdays { background-color: pink; width: 100%; height: 3rem; padding: 0px 0.4rem; display: flex; align-items: center; }
-.weekdays div { letter-spacing: 0.1rem; width: calc(100vw - 350px); display: flex; justify-content: center; align-items: center; }
-.days { width: 100%; display: flex; flex-wrap: wrap; padding: 0.2rem; }
-.days div { font-size: 22.4px; margin: 10.4px; width: calc(92.1143px); height: 48px; display: flex; justify-content: center; align-items: center; transition: background-color 0.2s ease 0s; }
-.prev-date, .next-date { opacity: 0.5; }
-.today { background-color: pink; border-radius: 50%; }
-.abc { background-color: yellowgreen; }
+main { 
+    background-color: sandybrown; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-left: 350px; 
+    width: calc(100vw - 350px); 
+    overflow-y: scroll; 
+}
+
+.calendar { 
+    width: 800px; 
+    height: 650px; 
+    background-color: rgb(115, 115, 206); 
+    border-radius: 48px; 
+}
+
+.month { 
+    display: flex; 
+    justify-content: space-between; 
+    border-radius: 3rem 3rem 0px 0px; 
+    background-color: rgb(53, 165, 53); 
+    align-items: center; 
+    width: 100%; 
+    height: 6rem; 
+    padding: 0px 2rem; 
+}
+
+.month i { 
+    cursor: pointer; 
+}
+
+.month h1 { 
+    text-transform: uppercase; 
+    margin-bottom: 1rem; 
+}
+
+.month p { 
+
+}
+
+.weekdays { 
+    background-color: pink; 
+    width: 100%; 
+    height: 3rem; 
+    padding: 0px 0.4rem; 
+    display: flex; 
+    align-items: center; 
+}
+
+.weekdays div { 
+    letter-spacing: 0.1rem; 
+    width: calc(100vw - 350px); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.days { 
+    width: 100%; 
+    display: flex; 
+    flex-wrap: wrap; 
+    padding: 0.2rem; 
+}
+
+.days div { 
+    font-size: 22.4px; 
+    margin: 10.4px; 
+    width: calc(92.1143px); 
+    height: 48px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: background-color 0.2s ease 0s; 
+}
+
+.prev-date, .next-date { 
+    opacity: 0.5; 
+}
+
+.today { 
+    background-color: pink; 
+    border-radius: 50%; 
+}
+
+.abc { 
+    background-color: yellowgreen; 
+}
