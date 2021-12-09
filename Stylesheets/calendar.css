@@ -1,0 +1,7 @@
+main {
+    background-color: sandybrown;
+    display: flex;
+    margin-left: 350px;
+    width: calc(100vw - 350px);
+    height: calc(100vh - 5rem)
+}

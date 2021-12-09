@@ -1,0 +1,12 @@
+aside {
+    background-color: greenyellow;
+    position: fixed;
+    height: calc(100vh - 4rem);
+    width: 350px;
+}
+
+#intro-container {
+    background-color: red;
+    position: flex;
+    height: 12rem;
+}

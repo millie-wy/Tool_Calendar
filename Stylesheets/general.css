@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif;
+    background-color: antiquewhite;
+    height: 100vh;
+}
+
+/* REUSABLE CLASSES */
+.flex { display: flex; }
+.fixed { display: fixed; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }

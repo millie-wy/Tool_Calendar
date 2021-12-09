@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./Stylesheets/general.css">
     <link rel="stylesheet" href="./Stylesheets/header.css">
     <link rel="stylesheet" href="./Stylesheets/intro.css">
@@ -17,6 +20,42 @@
     <script src="./Javascript/calendar.js"></script>
 </head>
 <body>
-    
+    <header class="flex justify-center">
+        <h1>Menskalender</h1>
+    </header>
+    <aside>
+        <div id="intro-container" class="flex"></div>
+        <div id="todo-container" class="flex"></div>
+    </aside>
+    <main>
+        <div class="calendar">
+            <div class="month">
+                <i class="fas fa-angle-left prev"></i>
+                <div class="date">
+                    <h1>may</h1>
+                    <p>Friday May 29, 2020</p>
+                </div>
+                <ifas class="fa-angle-right next"></ifas>
+                <div class="weekdays">
+                    <div>Mon</div>
+                    <div>Mon</div>
+                    <div>Mon</div>
+                    <div>Mon</div>
+                    <div>Mon</div>
+                    <div>Mon</div>
+                    <div>Mon</div>
+                </div>
+                <div class="days">
+                    <div class="prev">26</div>
+                    <div class="prev">27</div>
+                    <div class="prev">28</div>
+                    <div class="prev">29</div>
+                    <div class="prev">30</div>
+                    <div class="prev">31</div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
