@@ -2,29 +2,26 @@ main {
     background-color: sandybrown; 
     position: fixed;
     top: 5rem;
-    display: flex; 
-    justify-content: center; 
+    bottom: 0;
     align-items: center; 
     margin-left: 350px; 
     width: calc(100vw - 350px); 
-    overflow-y: scroll; 
-}
-
-h1 {
-    text-align: center;
+    overflow-y: scroll;
 }
 
 .calendar { 
-    width: 800px; 
-    height: 580px; 
+    margin: auto;
+    width: 800px;  
+    min-width: 800px;
+    min-height: 550px;
     background-color: rgb(115, 115, 206); 
-    border-radius: 48px; 
+    border-radius: 10px; 
 }
 
 .month { 
     display: flex; 
     justify-content: space-between; 
-    border-radius: 3rem 3rem 0px 0px; 
+    border-radius: 10px 10px 0px 0px; 
     background-color: rgb(53, 165, 53); 
     align-items: center; 
     width: 100%; 
@@ -34,15 +31,17 @@ h1 {
 
 .month i { 
     cursor: pointer; 
+    font-size: 2rem;
 }
 
 .month h1 { 
+    text-align: center;
     text-transform: uppercase; 
-    margin-bottom: 1rem; 
+    margin-bottom: 0.2rem; 
 }
 
 .month p { 
-
+  /* delete if no style will be needed */
 }
 
 .weekdays { 
@@ -79,7 +78,6 @@ h1 {
     justify-content: top; 
     align-items: center; 
     transition: background-color 0.2s ease 0s; 
-    background-color: yellow;
 }
 
 .prev-date, .next-date { 
@@ -93,5 +91,6 @@ h1 {
 
 .current-month > p { 
     background-color: yellowgreen; 
+    vertical-align: bottom;
     font-size: 0.8rem;
 }
