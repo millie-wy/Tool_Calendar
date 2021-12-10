@@ -1,10 +1,10 @@
-window.addEventListener('load', main);
+window.addEventListener('load', main, );
 
 // Functions to start on page load 
 function main() {
     addEventListeners();
     initIntro();
-    initTodo();
+    
     initCalendar();
 }
 
