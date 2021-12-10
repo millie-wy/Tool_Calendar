@@ -110,4 +110,11 @@ padding-left: 15px;
     cursor: pointer;
     border-radius: 3px;
     padding: 6px 10px;
+    opacity: 0.37;
+    pointer-events: none;
+}
+
+.footer button.active {
+    opacity: 1;
+    pointer-events: auto;
 }
