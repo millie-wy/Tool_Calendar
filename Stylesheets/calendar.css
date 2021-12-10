@@ -68,14 +68,14 @@ main {
     padding: 0.2rem; 
 }
 
-.days div { 
+.days > div { 
     font-size: 22.4px; 
     margin: 10.4px; 
     width: calc(92.1143px); 
     height: 55px; 
     display: flex; 
     flex-direction: column;
-    justify-content: top; 
+    justify-content: space-between; 
     align-items: center; 
     transition: background-color 0.2s ease 0s; 
 }
@@ -86,11 +86,14 @@ main {
 
 .today { 
     background-color: pink; 
-    border-radius: 1rem; 
+    border-radius: 0rem; 
 }
 
-.current-month > p { 
+.current-month > div { 
+    width: 100%;
     background-color: yellowgreen; 
-    vertical-align: bottom;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0.1rem;
 }

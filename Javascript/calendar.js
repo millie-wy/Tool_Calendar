@@ -86,11 +86,11 @@ async function fetchHolidays2021() {
 function printHolidaysToCalendar() {
     
     const daysDiv = document.querySelectorAll('.current-month');
-    const p = document.createElement('p');
+    const reminderDiv = document.createElement('div');
 
     for (let x = 0; x < daysDiv.length; x++ ) {
         console.log(x)
-        daysDiv[x].append(p);
-        p.innerHTML = "hello";
+        daysDiv[x].append(reminderDiv);
+        reminderDiv.innerHTML = "jagÄrEnHelgdagawfafas";
     }
 }
