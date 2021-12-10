@@ -1,10 +1,6 @@
 function initCalendar() {
-    addEventListeners()
     renderCalendar();
 }
-
-// Gloabl variables 
-const today = new Date();
 
 // Functions
 function addEventListeners() {
@@ -19,15 +15,24 @@ function addEventListeners() {
     })
 }
 
-const renderCalendar = () => {
+function renderCalendar() {
     today.setDate(1);
-    const monthDays = document.querySelector('.days');
-    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-    const prevLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-    const firstDayIndex = today.getDay() - 1; // shows 3
-    const lastDayIndex = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDay();
-    const nextDays = 7 - lastDayIndex ;
-    const months = [
+
+    // shows the last day of current month which is 31
+    const lastDayOfCurrentMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+
+    // shows the last day of previous month which is 30
+    const lastDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+
+    // shows the index of the first day of current month which is 2 (wed) 
+    const firstDayIndex = today.getDay() - 1;
+
+    // shows the index of the last dat of current month which is 4 (fri)
+    const lastDayIndex = new Date(today.getFullYear(), today.getMonth() + 1, - 1).getDay();
+
+    // counts how many days of next month to be shown in current month which is 2 (sat and sun)
+    const daysFromNextMonth = 7 - lastDayIndex - 1 ;
+    const months = [ 
         "January",
         "February",
         "March",
@@ -46,21 +51,25 @@ const renderCalendar = () => {
     document.querySelector('.date > p').innerHTML = today.getFullYear();
 
     let days = "";
+    const monthDays = document.querySelector('.days'); 
 
+    // x = 2; x > 0; x--   so it gets x = 2 and then x = 1
     for(let x = firstDayIndex; x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay -x + 1}</div>` 
+        // 30 - 2 - 1 = 29 and 30 -1 - 1 = 30
+    days += `<div class="prev-date">${lastDayOfPrevMonth - x + 1}</div>` 
     }
 
-    for ( let i = 1; i <= lastDay; i++) {
-        if(i === new Date().getDate() && today.getMonth() === new Date().getMonth()) {
+    for ( let i = 1; i <= lastDayOfCurrentMonth; i++) {
+        if(i === new Date().getDate() && today.getMonth() === new Date().getMonth() && today.getFullYear() === new Date().getFullYear()) {
             days += `<div class="today">${i}</div>`
         } else {
             days += `<div>${i}</div>`
         }
     }
 
-    for(let j= 1; j <= nextDays; j++) {
+    for(let j = 1; j <= daysFromNextMonth; j++) {
         days += `<div class="next-date">${j}</div>`;
-        monthDays.innerHTML = days;
     }
+    
+    monthDays.innerHTML = days;
 }
