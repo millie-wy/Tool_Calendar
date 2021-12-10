@@ -4,22 +4,38 @@ function initCalendar() {
 }
 
 function renderCalendar() {
-    today.setDate(1);
+    today.setDate(1); 
 
-    // shows the last day of current month which is 31
+    // Number of days of current month
     const lastDayOfCurrentMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
 
-    // shows the last day of previous month which is 30
+    // Number of days in previous month
     const lastDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
 
     // shows the index of the first day of current month which is 2 (wed) 
-    const firstDayIndex = today.getDay() - 1;
+    //const firstDayIndex = today.getDay() - 1; // minus 1 because the calendar starts from monday 
 
-    // shows the index of the last dat of current month which is 4 (fri)
-    const lastDayIndex = new Date(today.getFullYear(), today.getMonth() + 1, - 1).getDay();
+    // shows the index of the last day of current month which is 4 (fri)
+    //const lastDayIndex = new Date(today.getFullYear(), today.getMonth() + 1, - 1).getDay();
 
     // counts how many days of next month to be shown in current month which is 2 (sat and sun)
-    const daysFromNextMonth = 7 - lastDayIndex - 1 ;
+    //const daysFromNextMonth = 7 - lastDayIndex - 1;
+
+    let daysFromPrevMonth = 0;
+    if (today.getDay() - 1 < 0) {
+        daysFromPrevMonth = (7 - today.getDay()) - 1; //minus here because we want to start month on a Monday
+    } else {
+        daysFromPrevMonth = today.getDay() - 1;
+    }
+   
+    //const daysFromNextMonth = (7 * 6) - (daysFromPrevMonth + lastDayOfCurrentMonth);
+
+    let daysFromNextMonth = 0;
+    const remainder = (daysFromPrevMonth + lastDayOfCurrentMonth) % 7;
+    if (remainder !== 0) {
+        daysFromNextMonth = 7 - remainder;
+    };
+        
     const months = [ 
         "January",
         "February",
@@ -41,27 +57,46 @@ function renderCalendar() {
     let days = "";
     const monthDays = document.querySelector('.days'); 
 
+    //Fill previous month
     // x = 2; x > 0; x--   so it gets x = 2 and then x = 1
-    for(let x = firstDayIndex; x > 0; x--) {
-        // 30 - 2 - 1 = 29 and 30 -1 - 1 = 30
-    days += `<div class="prev-date">${lastDayOfPrevMonth - x + 1}</div>` 
+    for(let x = daysFromPrevMonth; x > 0; x--) {
+        let date = new Date();
+        date.setFullYear(today.getFullYear())
+        date.setMonth(today.getMonth() - 1);
+        date.setDate(lastDayOfPrevMonth - x + 1);
+        let dateClass = formatDate(date.getFullYear(), (date.getMonth() + 1), (lastDayOfPrevMonth - x + 1));
+        days += `<div class="${dateClass} prev-date">${lastDayOfPrevMonth - x + 1}</div>`
     }
 
+    //Fill current month
     for ( let i = 1; i <= lastDayOfCurrentMonth; i++) {
-        if(i === new Date().getDate() && today.getMonth() === new Date().getMonth() && today.getFullYear() === new Date().getFullYear()) {
-            days += `<div class="today">${i}</div>`
+        let dateClass = formatDate(today.getFullYear(), (today.getMonth() + 1), (today.getDate() + i - 1));
+        if (today.getDate() + i - 1 == new Date().getDate() && today.getMonth() === new Date().getMonth() && today.getFullYear() === new Date().getFullYear()) {
+            days += `<div class="${dateClass} today">${i}</div>`
         } else {
-            days += `<div class="current-month">${i}</div>`
+            days += `<div class="${dateClass}">${i}</div>`
         }
     }
 
+    //Fill next month
     for(let j = 1; j <= daysFromNextMonth; j++) {
-        days += `<div class="next-date">${j}</div>`;
+        let date = new Date();
+        date.setFullYear(today.getFullYear())
+        date.setMonth(today.getMonth() + 1);
+        date.setDate(j);
+        let dateClass = formatDate(date.getFullYear(), (date.getMonth() + 1), date.getDate());
+        days += `<div class="${dateClass} next-date">${j}</div>`;
     }
     
     monthDays.innerHTML = days;
 }
 
+function formatDate(yy, mm, dd) { 
+    if (yy < 10) yy = "0" + yy;
+    if (mm < 10) mm = "0" + mm;
+    if (dd < 10) dd = "0" + dd;
+    return yy + "" + mm + "" + dd;
+}
 
 async function fetchHolidays2021() {
     const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2021');
@@ -70,27 +105,18 @@ async function fetchHolidays2021() {
 
     const holidays21 = data.dagar.filter((day) => day.helgdag);
 
-    for (let i = 0; i <= holidays21.length; i++ ) {
+    for (let i = 0; i < holidays21.length; i++ ) {
         const holidayDates21 = new Date(holidays21[i].datum);
-        const datesToCompare = new Date('2021-12-26');
-        console.log({holidayDates21});
-        console.log({datesToCompare});
-        if ( holidayDates21.toString() ===  datesToCompare.toString()) {
-            console.log('YES!')
-            printHolidaysToCalendar();
-        } else { console.log('NO')
-    };
+        let searchClassName = formatDate(holidayDates21.getFullYear(), (holidayDates21.getMonth() + 1), holidayDates21.getDate());
+        let dayDiv = document.getElementsByClassName(searchClassName);
+        if ( dayDiv.length > 0) {
+            printHolidaysToCalendar(dayDiv[0], holidays21[i].helgdag)
+        }
     } 
 }
 
-function printHolidaysToCalendar() {
-    
-    const daysDiv = document.querySelectorAll('.current-month');
+function printHolidaysToCalendar(dayDiv, holidays21) {
     const reminderDiv = document.createElement('div');
-
-    for (let x = 0; x < daysDiv.length; x++ ) {
-        console.log(x)
-        daysDiv[x].append(reminderDiv);
-        reminderDiv.innerHTML = "jagÄrEnHelgdagawfafas";
-    }
+    dayDiv.append(reminderDiv);
+    reminderDiv.innerHTML = holidays21;
 }
