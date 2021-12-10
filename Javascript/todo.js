@@ -1,8 +1,5 @@
-
-
-/** comment by Millie - this is created for you to put functions for buttons or keydown - refer to intro.js :) */
-function addEventListeners() {
-
+function initTodo() {
+    showTasks();
 }
 
 const inputBox = document.querySelector(".inputField input");

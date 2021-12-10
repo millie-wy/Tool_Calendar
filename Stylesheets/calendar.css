@@ -73,11 +73,13 @@ h1 {
     font-size: 22.4px; 
     margin: 10.4px; 
     width: calc(92.1143px); 
-    height: 48px; 
+    height: 55px; 
     display: flex; 
-    justify-content: center; 
+    flex-direction: column;
+    justify-content: top; 
     align-items: center; 
     transition: background-color 0.2s ease 0s; 
+    background-color: yellow;
 }
 
 .prev-date, .next-date { 
@@ -86,9 +88,10 @@ h1 {
 
 .today { 
     background-color: pink; 
-    border-radius: 50%; 
+    border-radius: 1rem; 
 }
 
-.abc { 
+.current-month > p { 
     background-color: yellowgreen; 
+    font-size: 0.8rem;
 }

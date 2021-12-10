@@ -3,19 +3,6 @@ function initCalendar() {
     fetchHolidays2021();
 }
 
-// Functions
-function addEventListeners() {
-    document.querySelector('.prev').addEventListener('click', () => {
-    today.setMonth(today.getMonth() - 1);
-    renderCalendar();
-    })
-
-    document.querySelector('.next').addEventListener('click', () => {
-    today.setMonth(today.getMonth() + 1);
-    renderCalendar();
-    })
-}
-
 function renderCalendar() {
     today.setDate(1);
 

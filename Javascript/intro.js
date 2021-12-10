@@ -3,12 +3,6 @@ function initIntro() {
     startClock();
 }
 
-function addEventListeners() {
- 
-}
-
-// Global variables 
-
 /** Displays current date */
 function displayCurrentDate() {
     const dateDisplay = document.querySelector('#current-date');
