@@ -4,7 +4,7 @@ function initIntro() {
 }
 
 function addEventListeners() {
-    
+ 
 }
 
 /** Shows current date and time */

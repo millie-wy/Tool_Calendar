@@ -13,6 +13,7 @@ body {
 .flex { display: flex; }
 .fixed { position: fixed; }
 .justify-center { justify-content: center; }
+.align-items { align-items: center;}
 .text-center { text-align: center; }
 .col { flex-direction: column; }
 .row { flex-direction: row; }

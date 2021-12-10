@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bb463679ad.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./Stylesheets/general.css">
     <link rel="stylesheet" href="./Stylesheets/header.css">
     <link rel="stylesheet" href="./Stylesheets/intro.css">
@@ -29,8 +31,32 @@
         <div id="intro-container" class="flex col">
             <h2 id="current-date"></h2>
             <h3 id="current-time"></h3>
+
         </div>
-        <div id="todo-container" class="flex"></div>
+        <div id="todo-container" class="flex justify-center align-items">
+            <div class="todo-today">
+                <h3>Today</h3>
+
+               <div class="inputField">
+                   <input type="text" placeholder="Add your new todo">
+                   <button><i class="fas fa-plus"></i></button>
+               </div>
+               <ul class="todoList">
+                    <li>Drink coffee <span><i class="fas fa-trash"></i></span></li>
+                    <li>Drink coffee <span><i class="fas fa-trash"></i></span></li>
+                    <li>Drink coffee <span><i class="fas fa-trash"></i></span></li>
+                    <li>Drink coffee <span><i class="fas fa-trash"></i></span></li>
+                   
+               </ul>
+               <div class="footer flex align-items">
+                   <span>You have 4 pending tasks</span>
+                   <button>Clear all</button>
+                   <span></span>
+               </div>
+                </div>
+            </div>
+
+        </div>
     </aside>
     <main>
         <div class="calendar">
