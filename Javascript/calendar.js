@@ -1,5 +1,6 @@
 function initCalendar() {
     renderCalendar();
+    fetchHolidays2021();
 }
 
 // Functions
@@ -63,7 +64,7 @@ function renderCalendar() {
         if(i === new Date().getDate() && today.getMonth() === new Date().getMonth() && today.getFullYear() === new Date().getFullYear()) {
             days += `<div class="today">${i}</div>`
         } else {
-            days += `<div>${i}</div>`
+            days += `<div class="current-month">${i}</div>`
         }
     }
 
@@ -72,4 +73,37 @@ function renderCalendar() {
     }
     
     monthDays.innerHTML = days;
+}
+
+
+async function fetchHolidays2021() {
+    const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2021');
+    const data = await response.json();
+    console.log(data)
+
+    const holidays21 = data.dagar.filter((day) => day.helgdag);
+
+    for (let i = 0; i <= holidays21.length; i++ ) {
+        const holidayDates21 = new Date(holidays21[i].datum);
+        const datesToCompare = new Date('2021-12-26');
+        console.log({holidayDates21});
+        console.log({datesToCompare});
+        if ( holidayDates21.toString() ===  datesToCompare.toString()) {
+            console.log('YES!')
+            printHolidaysToCalendar();
+        } else { console.log('NO')
+    };
+    } 
+}
+
+function printHolidaysToCalendar() {
+    
+    const daysDiv = document.querySelectorAll('.current-month');
+    const p = document.createElement('p');
+
+    for (let x = 0; x < daysDiv.length; x++ ) {
+        console.log(x)
+        daysDiv[x].append(p);
+        p.innerHTML = "hello";
+    }
 }
