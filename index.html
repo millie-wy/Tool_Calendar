@@ -16,16 +16,19 @@
     <link rel="stylesheet" href="./Stylesheets/todo.css">
     <link rel="stylesheet" href="./Stylesheets/calendar.css">
 
+    <script src="./Javascript/main.js"></script>
     <script src="./Javascript/intro.js"></script>
     <script src="./Javascript/todo.js"></script>
-    <script defer src="./Javascript/calendar.js"></script>
+    <script src="./Javascript/calendar.js"></script>
 </head>
 <body>
     <header class="fixed flex justify-center">
         <h1>My Calendar</h1>
     </header>
     <aside>
-        <div id="intro-container" class="flex">
+        <div id="intro-container" class="flex col">
+            <h2 id="current-date"></h2>
+            <h3 id="current-time"></h3>
         </div>
         <div id="todo-container" class="flex"></div>
     </aside>
