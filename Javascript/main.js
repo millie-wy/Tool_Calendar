@@ -17,16 +17,14 @@ function addEventListeners() {
     /** Renders calender to previous month on button click */
     document.querySelector('.prev').addEventListener('click', () => {
     today.setMonth(today.getMonth() - 1);
-    fetchHolidays2021();
-    fetchHolidays2022();
     renderCalendar();
+    fetchHolidaysForThreeYears();
     })
 
     /** Renders calender to next month on button click */
     document.querySelector('.next').addEventListener('click', () => {
     today.setMonth(today.getMonth() + 1);
-    fetchHolidays2021();
-    fetchHolidays2022();
     renderCalendar();
+    fetchHolidaysForThreeYears();
     })
 }
