@@ -1,5 +1,5 @@
 main { 
-    background-color: sandybrown; 
+    background-color: #F5EAEC; 
     position: fixed;
     top: 5rem;
     bottom: 0;
@@ -14,7 +14,6 @@ main {
     width: 800px;  
     min-width: 800px;
     min-height: 550px;
-    background-color: rgb(115, 115, 206); 
     border-radius: 10px; 
 }
 
@@ -22,7 +21,7 @@ main {
     display: flex; 
     justify-content: space-between; 
     border-radius: 10px 10px 0px 0px; 
-    background-color: rgb(53, 165, 53); 
+    background-color: #E1E7F5; 
     align-items: center; 
     width: 100%; 
     height: 6rem; 
@@ -37,6 +36,7 @@ main {
 .month h1 { 
     text-align: center;
     text-transform: uppercase; 
+    font-weight: 400;
     margin-bottom: 0.2rem; 
 }
 
@@ -45,7 +45,8 @@ main {
 }
 
 .weekdays { 
-    background-color: pink; 
+    background-color: #E1E7F5; 
+    border-radius: 0px 0px 10px 10px;
     width: 100%; 
     height: 3rem; 
     padding: 0px 0.4rem; 
@@ -66,6 +67,9 @@ main {
     display: flex; 
     flex-wrap: wrap; 
     padding: 0.2rem; 
+    margin-top: 1rem;
+    background-color: #ffffff66;
+    border-radius: 10px;
 }
 
 .days > div { 
@@ -78,6 +82,7 @@ main {
     justify-content: space-between; 
     align-items: center; 
     transition: background-color 0.2s ease 0s; 
+    position: relative;
 }
 
 .prev-date, .next-date { 
@@ -85,15 +90,33 @@ main {
 }
 
 .today { 
-    background-color: pink; 
-    border-radius: 0rem; 
+    background-color: #FEE1E5; 
+    border-radius: 3px; 
 }
 
 .holiday-reminder { 
     width: 100%;
-    background-color: yellowgreen; 
+    background-color: #8da1cf; 
+    color: whitesmoke;
+    border-radius: 3px;
     font-size: 0.6rem;
     justify-content: center;
     margin: 0;
     padding: 0.1rem;
+}
+
+.todo-reminder {
+    width: 15px;
+    height: 15px; 
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    color: whitesmoke;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

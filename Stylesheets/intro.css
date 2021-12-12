@@ -1,5 +1,5 @@
 aside {
-    background-color: greenyellow;
+    background-color: #F5EAEC;
     position: fixed;
     top: 5rem;
     height: calc(100vh - 4rem);
@@ -7,7 +7,5 @@ aside {
 }
 
 #intro-container {
-    background-color: red;
-    position: flex;
     height: 12rem;
 }
