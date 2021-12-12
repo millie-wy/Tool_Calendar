@@ -1,30 +1,36 @@
 window.addEventListener('load', main);
 
+let calendar = {
+    currentDate: new Date(),
+    next() {
+        this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    },
+    prev() {
+        this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    }
+}
+
 /** Functions to start on page load */
 function main() {
     initIntro();
     initTodo();
-    initCalendar();
+    initCalendar(calendar.currentDate);
     addEventListeners();
 }
-
-// Gloabl variables 
-const today = new Date();
-
 
 function addEventListeners() {
 
     /** Renders calender to previous month on button click */
     document.querySelector('.prev').addEventListener('click', () => {
-    today.setMonth(today.getMonth() - 1);
-    renderCalendar();
+    calendar.prev();
+    renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
     })
 
     /** Renders calender to next month on button click */
     document.querySelector('.next').addEventListener('click', () => {
-    today.setMonth(today.getMonth() + 1);
-    renderCalendar();
+    calendar.next();
+    renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
     })
 }
