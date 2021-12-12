@@ -1,6 +1,7 @@
 function initCalendar() {
     renderCalendar();
     fetchHolidays2021();
+    fetchHolidays2022();
 }
 
 function renderCalendar() {
@@ -91,14 +92,45 @@ async function fetchHolidays2021() {
         let searchClassName = formatDate(holidayDates21.getFullYear(), (holidayDates21.getMonth() + 1), holidayDates21.getDate());
         let dayDiv = document.getElementsByClassName(searchClassName);
         if ( dayDiv.length > 0) {
-            printHolidaysToCalendar(dayDiv[0], holidays21[i].helgdag)
+            printHolidaysToCalendar21(dayDiv[0], holidays21[i].helgdag)
         }
     } 
 }
 
-function printHolidaysToCalendar(dayDiv, holidays21) { 
+function printHolidaysToCalendar21(dayDiv, holidays21) { 
     const reminderDiv = document.createElement('div');
-    reminderDiv.className = 'reminder';
+    reminderDiv.className = 'holiday-reminder';
     reminderDiv.innerHTML = holidays21;
+    dayDiv.append(reminderDiv);
+
+    // IMPORTANT: to be moved under todo reminder function !!!!!
+    const todoReminderDiv = document.createElement('div');
+    todoReminderDiv.className = 'todo-reminder';
+    todoReminderDiv.innerText = '1'
+    dayDiv.append(todoReminderDiv);
+}
+
+async function fetchHolidays2022() {
+    const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2022');
+    const data = await response.json();
+    console.log(data) 
+
+    const holidays22 = data.dagar.filter((day) => day.helgdag);
+    console.log(holidays22)
+
+    for (let i = 0; i < holidays22.length; i++ ) {
+        const holidayDates22 = new Date(holidays22[i].datum);
+        let searchClassName = formatDate(holidayDates22.getFullYear(), (holidayDates22.getMonth() + 1), holidayDates22.getDate());
+        let dayDiv = document.getElementsByClassName(searchClassName);
+        if ( dayDiv.length > 0) {
+            printHolidaysToCalendar22(dayDiv[0], holidays22[i].helgdag)
+        }
+    } 
+}
+
+function printHolidaysToCalendar22(dayDiv, holidays22) { 
+    const reminderDiv = document.createElement('div');
+    reminderDiv.className = 'holiday-reminder';
+    reminderDiv.innerHTML = holidays22;
     dayDiv.append(reminderDiv);
 }
