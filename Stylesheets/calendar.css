@@ -89,7 +89,7 @@ main {
     border-radius: 0rem; 
 }
 
-.current-month > div { 
+.holiday-reminder { 
     width: 100%;
     background-color: yellowgreen; 
     font-size: 0.6rem;
