@@ -1,7 +1,6 @@
 function initCalendar() {
     renderCalendar();
-    fetchHolidays2021();
-    fetchHolidays2022();
+    fetchHolidaysForThreeYears();  
 }
 
 function renderCalendar() {
@@ -13,18 +12,16 @@ function renderCalendar() {
     // Number of days in previous month
     const lastDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
 
-    console.log(today.getDay());
-    // 
+    // to calculate how many days to be added from prev month in the current month 
     let daysFromPrevMonth = 0;
-    if (today.getDay() - 1 < 0) {
+    if (today.getDay() - 1 < 0) { // ******
         daysFromPrevMonth = (7 - today.getDay()) - 1; //minus here because we want to start the month on a Monday
     } else {
         daysFromPrevMonth = today.getDay() - 1;
     }
    
-    //const daysFromNextMonth = (7 * 6) - (daysFromPrevMonth + lastDayOfCurrentMonth);
-
-    let daysFromNextMonth = 0;
+    // to calculate how many days to be added from the following month in the current month
+    let daysFromNextMonth = 0; // 
     const remainder = (daysFromPrevMonth + lastDayOfCurrentMonth) % 7;
     if (remainder !== 0) {
         daysFromNextMonth = 7 - remainder;
@@ -79,28 +76,30 @@ function formatDate(yy, mm, dd) {
     return yy + "" + mm + "" + dd;
 }
 
-async function fetchHolidays2021() {
-    const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2021');
-    const data = await response.json();
-    //console.log(data) 
+async function fetchHolidaysForThreeYears() {
+    const currentYear = new Date().getFullYear();
+    let holidays = [];
+    for (let year = currentYear - 1; year <= currentYear + 1; year++) {
+        const response = await fetch (`http://sholiday.faboul.se/dagar/v2.1/${year}`);
+        const data = await response.json();
+        const filteredHolidays = data.dagar.filter((day) => day.helgdag);
+        holidays = holidays.concat(filteredHolidays);
+    }
 
-    const holidays21 = data.dagar.filter((day) => day.helgdag);
-    console.log(holidays21)
-
-    for (let i = 0; i < holidays21.length; i++ ) {
-        const holidayDates21 = new Date(holidays21[i].datum);
-        let searchClassName = formatDate(holidayDates21.getFullYear(), (holidayDates21.getMonth() + 1), holidayDates21.getDate());
+    for (let i = 0; i < holidays.length; i++ ) {
+        const holidayDates = new Date(holidays[i].datum);
+        let searchClassName = formatDate(holidayDates.getFullYear(), (holidayDates.getMonth() + 1), holidayDates.getDate());
         let dayDiv = document.getElementsByClassName(searchClassName);
         if ( dayDiv.length > 0) {
-            printHolidaysToCalendar21(dayDiv[0], holidays21[i].helgdag)
+            printHolidaysToCalendar(dayDiv[0], holidays[i].helgdag)
         }
     } 
 }
 
-function printHolidaysToCalendar21(dayDiv, holidays21) { 
+function printHolidaysToCalendar(dayDiv, holidays) { 
     const reminderDiv = document.createElement('div');
     reminderDiv.className = 'holiday-reminder';
-    reminderDiv.innerHTML = holidays21;
+    reminderDiv.innerHTML = holidays;
     dayDiv.append(reminderDiv);
 
     // IMPORTANT: to be moved under todo reminder function !!!!!
@@ -108,29 +107,4 @@ function printHolidaysToCalendar21(dayDiv, holidays21) {
     todoReminderDiv.className = 'todo-reminder';
     todoReminderDiv.innerText = '1'
     dayDiv.append(todoReminderDiv);
-}
-
-async function fetchHolidays2022() {
-    const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2022');
-    const data = await response.json();
-    console.log(data) 
-
-    const holidays22 = data.dagar.filter((day) => day.helgdag);
-    console.log(holidays22)
-
-    for (let i = 0; i < holidays22.length; i++ ) {
-        const holidayDates22 = new Date(holidays22[i].datum);
-        let searchClassName = formatDate(holidayDates22.getFullYear(), (holidayDates22.getMonth() + 1), holidayDates22.getDate());
-        let dayDiv = document.getElementsByClassName(searchClassName);
-        if ( dayDiv.length > 0) {
-            printHolidaysToCalendar22(dayDiv[0], holidays22[i].helgdag)
-        }
-    } 
-}
-
-function printHolidaysToCalendar22(dayDiv, holidays22) { 
-    const reminderDiv = document.createElement('div');
-    reminderDiv.className = 'holiday-reminder';
-    reminderDiv.innerHTML = holidays22;
-    dayDiv.append(reminderDiv);
 }
