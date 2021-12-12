@@ -12,18 +12,11 @@ function renderCalendar() {
     // Number of days in previous month
     const lastDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
 
-    // shows the index of the first day of current month which is 2 (wed) 
-    //const firstDayIndex = today.getDay() - 1; // minus 1 because the calendar starts from monday 
-
-    // shows the index of the last day of current month which is 4 (fri)
-    //const lastDayIndex = new Date(today.getFullYear(), today.getMonth() + 1, - 1).getDay();
-
-    // counts how many days of next month to be shown in current month which is 2 (sat and sun)
-    //const daysFromNextMonth = 7 - lastDayIndex - 1;
-
+    console.log(today.getDay());
+    // 
     let daysFromPrevMonth = 0;
     if (today.getDay() - 1 < 0) {
-        daysFromPrevMonth = (7 - today.getDay()) - 1; //minus here because we want to start month on a Monday
+        daysFromPrevMonth = (7 - today.getDay()) - 1; //minus here because we want to start the month on a Monday
     } else {
         daysFromPrevMonth = today.getDay() - 1;
     }
@@ -36,20 +29,7 @@ function renderCalendar() {
         daysFromNextMonth = 7 - remainder;
     };
         
-    const months = [ 
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",];
 
     document.querySelector(".date > h1").innerHTML = months[today.getMonth()];
     document.querySelector('.date > p').innerHTML = today.getFullYear();
@@ -101,9 +81,10 @@ function formatDate(yy, mm, dd) {
 async function fetchHolidays2021() {
     const response = await fetch ('http://sholiday.faboul.se/dagar/v2.1/2021');
     const data = await response.json();
-    console.log(data)
+    //console.log(data) 
 
     const holidays21 = data.dagar.filter((day) => day.helgdag);
+    console.log(holidays21)
 
     for (let i = 0; i < holidays21.length; i++ ) {
         const holidayDates21 = new Date(holidays21[i].datum);
@@ -115,8 +96,9 @@ async function fetchHolidays2021() {
     } 
 }
 
-function printHolidaysToCalendar(dayDiv, holidays21) {
+function printHolidaysToCalendar(dayDiv, holidays21) { 
     const reminderDiv = document.createElement('div');
-    dayDiv.append(reminderDiv);
+    reminderDiv.className = 'reminder';
     reminderDiv.innerHTML = holidays21;
+    dayDiv.append(reminderDiv);
 }
