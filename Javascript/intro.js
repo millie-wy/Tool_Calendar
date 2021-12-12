@@ -5,6 +5,7 @@ function initIntro() {
 
 /** Displays current date */
 function displayCurrentDate() {
+    const today = new Date();
     const dateDisplay = document.querySelector('#current-date');
     dateDisplay.innerHTML = today.toDateString();
 }
@@ -19,6 +20,7 @@ function renderClock() {
     const today = new Date();
     const timeDisplay = document.querySelector('#current-time');
     timeDisplay.innerHTML = getCurrentTime(today);
+    displayCurrentDate();
 }
 
 /**
