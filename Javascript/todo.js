@@ -31,19 +31,30 @@ addBtn.onclick = ()=> {
         addBtn.classList.remove("active") // unactivates the add button
 }
 
+// if user click enter to add todo
+inputBox.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        if (inputBox.value == "") {
+            return false;
+        }
+        addBtn.onclick();
+    }
+}
+)
+
 //function to add task list inside ul
 function showTasks(){
     let getLocalStorage = localStorage.getItem("New Todo");
     if(getLocalStorage === null){ // if localstorage is empty
         todoArr = [] // blank array
-    }else{
+    } else{
         todoArr = JSON.parse(getLocalStorage); // transforming json string into a js object 
     }
     const pendingNumber = document.querySelector(".pendingNumber");
     pendingNumber.textContent = todoArr.length; //passing the lenght value in pendingNumber
     if(todoArr.length > 0){ // if array length is greater than 0
         deleteAllBtn.classList.add("active"); // active the clearall button
-    }else{
+    } else{
         deleteAllBtn.classList.remove("active");// unactive the clearall button
 
     }
