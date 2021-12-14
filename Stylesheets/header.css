@@ -1,4 +1,5 @@
 header {
+    position: fixed;
     background-color: #43547B;
     color: white;
     height: 5rem;

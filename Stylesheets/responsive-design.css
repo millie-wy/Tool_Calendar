@@ -1,0 +1,67 @@
+@media (min-width: 1600px) {
+
+    .calendar { 
+        width: 70%; 
+        max-width: 1400px;
+    }
+}
+
+@media (max-width: 1200px) {
+       
+    aside { width: 30%; }
+
+    main { 
+        width: 70%; 
+        margin-left: 30%; 
+    }
+
+    .calendar { 
+        width: 90%;  
+        min-width: 500px;
+    }
+
+    .todo-reminder { right: 0px; }
+
+}
+@media (max-width: 768px) {
+    
+    header {
+        position: unset;
+        display: flex;
+    }
+    
+    aside {
+        background-color: #F5EAEC;
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+
+    main { 
+        width: 100%; 
+        margin: auto;
+        position: unset;
+    }
+
+    #intro-container { height: 6rem; }
+
+    #todo-container {
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .todo-reminder {
+        display: flex;
+        box-sizing: border-box;
+        overflow-y: scroll;
+    }
+
+    .todo-today { max-width: unset; }
+    .calendar { width: 95%;}
+
+}
+@media (max-width: 600px) {
+    .calendar { display: none; }
+}

@@ -11,7 +11,8 @@ main {
 
 .calendar { 
     margin: auto;
-    width: 800px;  
+    margin-top: 2rem;
+    width: 80%;  
     min-width: 800px;
     min-height: 550px;
     border-radius: 10px; 
@@ -63,10 +64,9 @@ main {
 }
 
 .days { 
-    width: 100%; 
-    display: flex; 
-    flex-wrap: wrap; 
-    padding: 0.2rem; 
+    display: grid;
+    grid-template-columns: repeat(7, 14.25%);
+    padding: 0.5rem 0.2rem 0.5rem; 
     margin-top: 1rem;
     background-color: #ffffff66;
     border-radius: 10px;
@@ -75,8 +75,7 @@ main {
 .days > div { 
     font-size: 22.4px; 
     margin: 10.4px; 
-    width: calc(92.1143px); 
-    height: 55px; 
+    height: 60px; 
     display: flex; 
     flex-direction: column;
     justify-content: space-between; 
