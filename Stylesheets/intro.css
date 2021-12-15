@@ -3,7 +3,8 @@ aside {
     position: fixed;
     top: 5rem;
     height: calc(100vh - 4rem);
-    width: 350px;
+    width: 400px;
+    overflow-y: scroll;  /* to be replaced by the correct scrollbar setting later */
 }
 
 #intro-container {

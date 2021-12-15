@@ -58,7 +58,7 @@
         overflow-y: scroll;
     }
 
-    .todo-today { max-width: unset; }
+    .todoToday { max-width: unset; }
     .calendar { width: 95%;}
 
 }

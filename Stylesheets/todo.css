@@ -1,22 +1,32 @@
 #todo-container {
-    background-color: skyblue;
+    background-color: blue;
     display: flex;
     height: auto;
 }
 
-.todo-today {
+#todoToday, .todo-selected, .todo-all {
     max-width: 400px;
-    background-color: blueviolet;
+    background-color: white;
     border-radius: 20px;
-    height: 480px;
     width: 100%;
-    margin: 1rem;
+    margin: 0.2rem;
     padding: 20px;
 }
 
-.todo-today h3 {
+#todoToday {
+    height: 13rem;
+}
+
+#todo-fold {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.todo-date-title {
+    width: 90%;
     text-align: center;
-    margin-top: 1rem;
+    color: black;
+    background-color: #E1E7F5;
 }
 
 .todoList {
@@ -41,31 +51,46 @@
 
 .inputField {
     display: flex;
-    height: 45px;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 25px;
 }
 
-.inputField input{
-    width: 85%;
-    height: 100%;
+.inputField > input{
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.5rem;
+    height: 1.5rem;
     outline: none;
     border: 1px solid white;
-    font-size: 14px;
+    font-size: 1rem;
     border-radius: 3px;
-    padding-left: 15px;
+    padding-left: 0.5rem;
+}
+
+.todo-item {
+    width: 90%;
+}
+
+.input-date-and-button {
+    margin: auto;
+    width: 90%;
+}
+
+.todo-date {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .inputField button {
     width: 50px;
-    height: 100%;
+    height: 1.5rem;
+    margin-left: 1rem;
     border: none;
     outline: none;
     background: #b323a7;
     color: white;
     font-size: 16px;
-    margin-left: 5px;
     cursor: pointer;
     border-radius: 3px;
     opacity: 0.37;

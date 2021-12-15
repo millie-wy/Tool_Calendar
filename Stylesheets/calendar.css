@@ -4,8 +4,8 @@ main {
     top: 5rem;
     bottom: 0;
     align-items: center; 
-    margin-left: 350px; 
-    width: calc(100vw - 350px); 
+    margin-left: 400px; 
+    width: calc(100vw - 400px); 
     overflow-y: scroll;
 }
 
@@ -68,7 +68,7 @@ main {
     grid-template-columns: repeat(7, 14.25%);
     padding: 0.5rem 0.2rem 0.5rem; 
     margin-top: 1rem;
-    background-color: #ffffff66;
+    background-color: #ffffffad;
     border-radius: 10px;
 }
 

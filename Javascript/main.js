@@ -33,4 +33,5 @@ function addEventListeners() {
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
     })
+
 }

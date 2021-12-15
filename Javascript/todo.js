@@ -3,13 +3,16 @@ function initTodo() {
 }
 
 const inputBox = document.querySelector(".inputField input");
+const dateBox = document.querySelector(".todo-date");
 const addBtn = document.querySelector(".inputField button");
 const todoList = document.querySelector(".todoList");
 const deleteAllBtn = document.querySelector(".footer button");
 
 inputBox.onkeyup = ()=>{
     let userData = inputBox.value; // getting user entered value
-    if(userData.trim() != 0) {// if user values aren't only spaces
+    let dateData = dateBox.value; //************************************** */
+    console.log(dateData);
+    if (userData.trim() != 0 && !dataData) {// if user values aren't only spaces
         addBtn.classList.add("active") // activates the add button
     } else {
         addBtn.classList.remove("active") // unactivates the add button

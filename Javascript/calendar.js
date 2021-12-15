@@ -94,7 +94,6 @@ async function fetchHolidaysForThreeYears() {
     const currentYear = new Date().getFullYear();
     let holidays = [];
     for (let year = currentYear - 1; year <= currentYear + 1; year++) {
-        //const response = await fetch (`https://cors-anywhere.herokuapp.com/https://sholiday.faboul.se/dagar/v2.1/${year}`);
         const response = await fetch (`https://api.allorigins.win/get?url=${encodeURIComponent(`https://sholiday.faboul.se/dagar/v2.1/${year}`)}`);
         const data = await response.json();
         const json = JSON.parse(data.contents);
@@ -123,7 +122,7 @@ function printHolidaysToCalendar(dayDiv, holidays) {
     reminderDiv.innerHTML = holidays;
     dayDiv.append(reminderDiv);
 
-    // ********* IMPORTANT: to be moved under todo reminder function !!!!!!!!
+// ********* IMPORTANT: to be moved under todo reminder function !!!!!!!!
     const todoReminderDiv = document.createElement('div');
     todoReminderDiv.className = 'todo-reminder';
     todoReminderDiv.innerText = '1'

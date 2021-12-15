@@ -23,6 +23,7 @@
     <script src="./Javascript/intro.js"></script>
     <script defer src="./Javascript/todo.js"></script>
     <script src="./Javascript/calendar.js"></script>
+    <script src="./Javascript/collapse-sidebar.js"></script>
 </head>
 <body>
     <header class="flex justify-center">
@@ -32,27 +33,45 @@
         <div id="intro-container" class="flex col justify-center text-center">
             <h2 id="current-date"></h2>
             <h3 id="current-time"></h3>
-
         </div>
-        <div id="todo-container" class="flex justify-center align-items">
-            <div class="todo-today">
-                <h3>Today</h3>
-
-               <div class="inputField">
-                   <input type="text" placeholder="Add your new todo">
-                   <button><i class="fas fa-plus"></i></button>
-               </div>
-               <ul class="todoList">
-                    <!--Todo comes from localstorage--> 
-               </ul>
-               <div class="footer flex align-items">
-                   <span>You have <span class="pendingNumber"></span> pending tasks</span>
-                   <button>Clear all</button>
-               </div>
+        <div id="todo-container" class="flex col justify-center align-items">
+            <div id="todoToday">
+                <div class="flex row spacebetween">
+                    <h3 class="todo-date-title">Today</h3><i id="todo-fold" class="fas fa-minus-circle"></i>
+                </div>
+                    <ul class="todoList" id="todoList">
+                        <!--Todo comes from localstorage--> 
+                    </ul>
+                <div class="footer flex align-items">
+                    <span>You have <span class="pendingNumber"></span> pending tasks today</span>
+                    <button>Clear all</button>
                 </div>
             </div>
-        </div>
+            <div class="todo-selected">
+                <div class="flex row spacebetween">
+                    <h3 class="todo-date-title">Selected Date</h3><i class="todo-fold fas fa-plus-circle"></i>
+                </div>
+                <ul class="todoList-selected">
+                        <!--Todo comes from localstorage--> 
+                </ul>
+            </div>
+            <div class="todo-all">
+                <div class="flex row spacebetween">
+                    <h3 class="todo-date-title">All</h3><i class="todo-fold fas fa-plus-circle"></i>
+                </div>
+                <ul class="todoList-all">
+                        <!--Todo comes from localstorage--> 
+                </ul>
+            </div>
+            <div class="inputField flex col">
+                <input type="text" placeholder="Add your new todo"  class="todo-item" required>
+                <div class="input-date-and-button flex row">
+                    <input type="date" class="todo-date" required>
+                    <button><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
     </aside>
+    
     <main class="flex justify-center text-center">
         <div class="calendar">
             <div class="month">
