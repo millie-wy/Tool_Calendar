@@ -39,7 +39,7 @@
                 <div class="flex row spacebetween">
                     <h3 class="todo-date-title">Today</h3><i class="todo-fold fas fa-minus-circle"></i>
                 </div>
-                <ul class="todoList" id="todoList">
+                <ul class="todoList todoList-today">
                     <!--Todo comes from localstorage--> 
                 </ul>
                 <div id="todo-footer" class="footer flex align-items">
@@ -64,9 +64,9 @@
                 </ul>
             </div>
             <div class="inputField flex col">
-                <input type="text" placeholder="Add your new todo"  class="todo-item" required>
+                <input type="text" placeholder="Add your new todo"  class="todo-item">
                 <div class="input-date-and-button flex row">
-                    <input type="date" class="todo-date" required>
+                    <input type="date" class="todo-date" min="1990-01-01">
                     <button><i class="fas fa-plus"></i></button>
                 </div>
             </div>
