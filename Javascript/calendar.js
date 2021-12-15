@@ -86,7 +86,7 @@ function formatDate(yy, mm, dd) {
     if (yy < 10) yy = "0" + yy;
     if (mm < 10) mm = "0" + mm;
     if (dd < 10) dd = "0" + dd;
-    return yy + "" + mm + "" + dd;
+    return yy + "-" + mm + "-" + dd;
 }
 
 /** Fetchs API data to get an array of the Swedish public holidays */
