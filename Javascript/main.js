@@ -16,9 +16,11 @@ function main() {
     initTodo();
     initCalendar(calendar.currentDate);
     addEventListeners();
+    console.log('hej')
 }
 
 function addEventListeners() {
+    console.log('hello')
 
     /** Renders calender to previous month on button click */
     document.querySelector('.prev').addEventListener('click', () => {
@@ -32,6 +34,12 @@ function addEventListeners() {
     calendar.next();
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
+    })
+
+    /** Expands or collapse todo list on button click */
+    const expandBtns = document.querySelectorAll('.todo-fold'); 
+    expandBtns.forEach(expandBtn => {
+    expandBtn.addEventListener('click', toggleTodo);
     })
 
 }
