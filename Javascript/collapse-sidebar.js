@@ -1,14 +1,9 @@
-
-
-    const expandBtns = document.querySelectorAll('.todo-fold'); 
-    expandBtns.forEach(expandBtn => {
-      expandBtn.addEventListener('click', toggleTodo);
-    })
-
-
-
 // toggle collapse of specified content
 
+/**
+ * Expand of collapse todo lists and render button class on click 
+ * @param {Event} event // pointer event for expand/collapse button
+ */
 function toggleTodo(event) {
     let expandBtn = event.target;
     let parentDiv = event.target.parentNode;

@@ -16,11 +16,9 @@ function main() {
     initTodo();
     initCalendar(calendar.currentDate);
     addEventListeners();
-    console.log('hej')
 }
 
 function addEventListeners() {
-    console.log('hello')
 
     /** Renders calender to previous month on button click */
     document.querySelector('.prev').addEventListener('click', () => {
