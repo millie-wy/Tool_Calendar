@@ -1,11 +1,11 @@
-function addEventListeners() {
+
 
     const expandBtns = document.querySelectorAll('.todo-fold'); 
     expandBtns.forEach(expandBtn => {
       expandBtn.addEventListener('click', toggleTodo);
     })
 
-}
+
 
 // toggle collapse of specified content
 
