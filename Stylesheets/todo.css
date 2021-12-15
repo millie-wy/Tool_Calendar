@@ -4,8 +4,9 @@
     height: auto;
 }
 
-#todoToday, .todo-selected, .todo-all {
+.todoToday, .todo-selected, .todo-all {
     max-width: 400px;
+    height: auto;
     background-color: white;
     border-radius: 20px;
     width: 100%;
@@ -13,11 +14,7 @@
     padding: 20px;
 }
 
-#todoToday {
-    height: 13rem;
-}
-
-#todo-fold {
+.todo-fold {
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -31,6 +28,7 @@
 
 .todoList {
    padding: 0px;
+   background-color: aqua;
    max-height: 230px;
    overflow-y: auto;
 }
@@ -41,7 +39,7 @@
     height: 45px;
     position: relative;
     background-color: grey;
-    margin-bottom: 8px;
+    margin: 8px 0 8px 0;
     border-radius: 3px;
     padding: 0 15px;
     letter-spacing: 1px;
@@ -118,13 +116,13 @@
     right: 0px;
 }
 
-.footer {
+#todo-footer {
     width: 100%;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.footer button {
+#todo-footer button {
     border: none;
     outline: none;
     background: #b323a7;
@@ -138,7 +136,7 @@
     pointer-events: none;
 }
 
-.footer button.active {
+#todo-footer button.active {
     opacity: 1;
     pointer-events: auto;
 }

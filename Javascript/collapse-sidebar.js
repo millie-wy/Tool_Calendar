@@ -1,27 +1,31 @@
 function addEventListeners() {
-    document.querySelector('#todo-fold').addEventListener('click', () => {
-    toggleTodoExpand();
+
+    const expandBtns = document.querySelectorAll('.todo-fold'); 
+    expandBtns.forEach(expandBtn => {
+      expandBtn.addEventListener('click', toggleTodo);
     })
+
 }
 
 // toggle collapse of specified content
 
-function toggleTodoExpand() {
-    console.log('clicked')
-    const todoTodayDiv = document.getElementById('todoToday');
-    const todoList = document.getElementById('todoList');
-        if (todoTodayDiv.style.height === "13rem") {
-            console.log('Hello')
+function toggleTodo(event) {
+    let expandBtn = event.target;
+    let parentDiv = event.target.parentNode;
+    let todoList = parentDiv.nextElementSibling;
+        if (todoList.style.display !== "none") {
             todoList.style.display = "none";
-        
+            expandBtn.classList.remove('fa-minus-circle');
+            expandBtn.classList.add('fa-plus-circle')
         } else {
-          console.log('bye')
-          todoList.style.display = "none";
+          todoList.style.display = "block";
+          expandBtn.classList.remove('fa-plus-circle');
+          expandBtn.classList.add('fa-minus-circle')
         }
       }
 
 
-  // collapse all open content
+// collapse all open content
 // function collapseAllContent
   
 

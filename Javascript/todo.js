@@ -12,7 +12,7 @@ inputBox.onkeyup = ()=>{
     let userData = inputBox.value; // getting user entered value
     let dateData = dateBox.value; //************************************** */
     console.log(dateData);
-    if (userData.trim() != 0 && !dataData) {// if user values aren't only spaces
+    if (userData.trim() != 0 && !dateData) {// if user values aren't only spaces
         addBtn.classList.add("active") // activates the add button
     } else {
         addBtn.classList.remove("active") // unactivates the add button

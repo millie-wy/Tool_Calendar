@@ -35,14 +35,14 @@
             <h3 id="current-time"></h3>
         </div>
         <div id="todo-container" class="flex col justify-center align-items">
-            <div id="todoToday">
+            <div class="todoToday">
                 <div class="flex row spacebetween">
-                    <h3 class="todo-date-title">Today</h3><i id="todo-fold" class="fas fa-minus-circle"></i>
+                    <h3 class="todo-date-title">Today</h3><i class="todo-fold fas fa-minus-circle"></i>
                 </div>
-                    <ul class="todoList" id="todoList">
-                        <!--Todo comes from localstorage--> 
-                    </ul>
-                <div class="footer flex align-items">
+                <ul class="todoList" id="todoList">
+                    <!--Todo comes from localstorage--> 
+                </ul>
+                <div id="todo-footer" class="footer flex align-items">
                     <span>You have <span class="pendingNumber"></span> pending tasks today</span>
                     <button>Clear all</button>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="flex row spacebetween">
                     <h3 class="todo-date-title">Selected Date</h3><i class="todo-fold fas fa-plus-circle"></i>
                 </div>
-                <ul class="todoList-selected">
+                <ul class="todoList todoList-selected">
                         <!--Todo comes from localstorage--> 
                 </ul>
             </div>
@@ -59,7 +59,7 @@
                 <div class="flex row spacebetween">
                     <h3 class="todo-date-title">All</h3><i class="todo-fold fas fa-plus-circle"></i>
                 </div>
-                <ul class="todoList-all">
+                <ul class="todoList todoList-all">
                         <!--Todo comes from localstorage--> 
                 </ul>
             </div>
