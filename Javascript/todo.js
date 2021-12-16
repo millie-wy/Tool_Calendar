@@ -77,10 +77,6 @@ function showTodosToday() {
 
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
-<<<<<<< HEAD
-=======
-    //console.log(new Date().toDateString());
->>>>>>> 23a4d52888b0adc7025df77654be3bb2031772d4
     filter.forEach((element, index) => {
         newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
     });
