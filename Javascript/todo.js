@@ -34,7 +34,7 @@ function validateInput() {
 // if user click on the add button
 function createTodo() {
     let userData = inputBox.value; // getting user entered value
-    let dateData = dateBox.value;
+    let dateData = dateBox.value; // getting user entered date
     let getLocalStorage = localStorage.getItem("New Todo"); // Getting localstorage
     if(getLocalStorage == null) { // if localstorage is empty
         todoArr = [] // blank array
@@ -49,7 +49,6 @@ function createTodo() {
 }
 
 // if user click enter to add todo
-
 function pressedEnter(event) {
     if (event.keyCode === 13) {
         if (inputBox.value == "") {
@@ -115,15 +114,15 @@ function deleteTask(index) {
     showTodosToday(); //calling showTodosToday function
 }
 
+// edit task function
 function editTask(index) {
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage);
-
     inputBox.value = todoArr[index].description;
     dateBox.value = todoArr[index].date;
+    todoArr.splice(index, 1);
+    localStorage.setItem("New Todo", JSON.stringify(todoArr));
     validateInput();
-
-    
 }
 
 // delete all tasks function
