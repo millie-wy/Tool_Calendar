@@ -16,6 +16,7 @@ function main() {
     initTodo();
     initCalendar(calendar.currentDate);
     addEventListeners();
+    clickCalendarDay();
 }
 
 function addEventListeners() {
@@ -25,6 +26,7 @@ function addEventListeners() {
     calendar.prev();
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
+    clickCalendarDay();
     })
 
     /** Renders calender to next month on button click */
@@ -32,12 +34,12 @@ function addEventListeners() {
     calendar.next();
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
+    clickCalendarDay();
     })
 
     /** Expands or collapse todo list on button click */
     const expandBtns = document.querySelectorAll('.todo-fold'); 
     expandBtns.forEach(expandBtn => {
-    expandBtn.addEventListener('click', toggleTodo);
+        expandBtn.addEventListener('click', toggleTodo);
     })
-
 }
