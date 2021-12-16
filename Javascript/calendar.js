@@ -160,8 +160,8 @@ function showTodosSelectedDate(selectedDate) {
     dateBox.value = "";
 
     if(filter.length > 0){ // if array length is greater than 0
-        deleteAllBtn.classList.add("active"); // active the clearall button
+        deleteAllTodaysTodoBtn.classList.add("active"); // active the clearall button
     } else{
-        deleteAllBtn.classList.remove("active");// unactive the clearall button
+        deleteAllTodaysTodoBtn.classList.remove("active");// unactive the clearall button
     }
 }
