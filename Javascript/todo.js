@@ -114,6 +114,15 @@ function deleteTask(index) {
     showTodosToday(); //calling showTodosToday function
 }
 
+function editTask(index) {
+    let getLocalStorage = localStorage.getItem("New Todo");
+    todoArr = JSON.parse(getLocalStorage);
+
+    inputBox.value = todoArr[index].description;
+    dateBox.value = todoArr[index].date;
+    validateInput();
+}
+
 // delete all tasks function
 function deleteAllTodaysTodo() {
     let getLocalStorage = localStorage.getItem("New Todo");
