@@ -152,7 +152,7 @@ function showTodosSelectedDate(selectedDate) {
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
     filter.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
+        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
     todoListTitle.innerHTML = new Date(selectedDate).toDateString();
     todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
