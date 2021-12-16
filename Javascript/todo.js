@@ -14,8 +14,10 @@ dateBox.addEventListener('change', validateInput);
 const addBtn = document.querySelector(".inputField button");
 addBtn.addEventListener('click', createTodo);
 
+const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
+deleteAllTodaysTodoBtn.addEventListener('click', deleteAllTodaysTodo);
+
 const todoList = document.querySelector(".todoList-all");
-const deleteAllBtn = document.querySelector(".footer button");
 
 
 function validateInput() {
@@ -75,6 +77,10 @@ function showTodosToday() {
 
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
+<<<<<<< HEAD
+=======
+    //console.log(new Date().toDateString());
+>>>>>>> 23a4d52888b0adc7025df77654be3bb2031772d4
     filter.forEach((element, index) => {
         newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
     });
@@ -84,9 +90,9 @@ function showTodosToday() {
 
     pendingNumber.textContent = filter.length; //passing the lenght value in pendingNumber
     if(filter.length > 0){ // if array length is greater than 0
-        deleteAllBtn.classList.add("active"); // active the clearall button
+        deleteAllTodaysTodoBtn.classList.add("active"); // active the clearall button
     } else{
-        deleteAllBtn.classList.remove("active");// unactive the clearall button
+        deleteAllTodaysTodoBtn.classList.remove("active");// unactive the clearall button
     }
 }
 
@@ -113,11 +119,16 @@ function deleteTask (index){
 }
 
 // delete all tasks function
-deleteAllBtn.onclick = ()=> {
+function deleteAllTodaysTodo() {
+
+    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
+    console.log(new Date().toDateString());
+
+
     todoArr = []; // empty an array
     // after delete all task again update the local storage 
     localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
-    showTodosAll(); //calling showTasks function
+    showTodosToday(); //calling showTasks function
 }
 
 
