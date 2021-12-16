@@ -33,6 +33,10 @@
    overflow-y: auto;
 }
 
+.todoList-all {
+    display: none;
+}
+
 .todoList li {
     list-style: none;
     line-height: 45px;
@@ -144,4 +148,8 @@
 #todo-footer button.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+.disable {
+    display: none;
 }
