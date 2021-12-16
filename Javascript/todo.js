@@ -45,6 +45,7 @@ function createTodo() {
         localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
         showTodosAll(); //calling showTasks function
         showTodosToday();
+        showNoOfTodosOnCalendar();
         addBtn.classList.remove("active") // unactivates the add button
 }
 
@@ -95,9 +96,9 @@ function showTodosToday() {
 function showTodosAll(){
     let todoArr = getTodoList();
     let newLiTag = '';
-    const filter = todoArr.filter(element => element.date == new Date())
+    // const filter = todoArr.filter(element => element.date == new Date())
     todoArr.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
+        newLiTag += `<li>${element.description}<p class="date-display">${element.date}</p><span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span> <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
     todoList.innerHTML = newLiTag; // adding new li tag inside ul tag
     inputBox.value = ""; // once task added leave the input 

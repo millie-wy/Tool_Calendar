@@ -27,6 +27,7 @@ function addEventListeners() {
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
     clickCalendarDay();
+    showNoOfTodosOnCalendar()
     })
 
     /** Renders calender to next month on button click */
@@ -35,6 +36,7 @@ function addEventListeners() {
     renderCalendar(calendar.currentDate);
     fetchHolidaysForThreeYears();
     clickCalendarDay();
+    showNoOfTodosOnCalendar()
     })
 
     /** Expands or collapse todo list on button click */
