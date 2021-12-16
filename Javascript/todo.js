@@ -77,7 +77,8 @@ function showTodosToday() {
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
     filter.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
+        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
+                ;
     });
     todoListToday.innerHTML = newLiTag; // adding new li tag inside ul tag
     inputBox.value = ""; // once task added leave the input 
@@ -97,7 +98,7 @@ function showTodosAll(){
     let newLiTag = '';
     const filter = todoArr.filter(element => element.date == new Date())
     todoArr.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
+        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
     todoList.innerHTML = newLiTag; // adding new li tag inside ul tag
     inputBox.value = ""; // once task added leave the input 
@@ -121,6 +122,8 @@ function editTask(index) {
     inputBox.value = todoArr[index].description;
     dateBox.value = todoArr[index].date;
     validateInput();
+
+    
 }
 
 // delete all tasks function
