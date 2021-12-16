@@ -46,7 +46,7 @@ function renderCalendar(currentDate) {
         // the below is to set the class name of the new div element for comparsion in the fetchPublicHoliday function 
         // logic: we have set the date from the above 4 lines and now we format it. We +1 in the month and day so they dont count from 0-11 but 1-12
         let dateClass = formatDate(date.getFullYear(), (date.getMonth() + 1), (lastDayOfPrevMonth - x + 1));
-        days += `<div class="${dateClass} prev-date">${lastDayOfPrevMonth - x + 1}</div>` 
+        days += `<div class="${dateClass} prev-date day">${lastDayOfPrevMonth - x + 1}</div>` 
     }
 
     // to create div to fill the current month 
@@ -56,9 +56,9 @@ function renderCalendar(currentDate) {
         let dateClass = formatDate(currentDate.getFullYear(), (currentDate.getMonth() + 1), (currentDate.getDate() + i - 1));
         // compare the current date in the loop to the actual Today
         if (currentDate.getDate() + i - 1 == new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear()) {
-            days += `<div class="${dateClass} today">${i}</div>`
+            days += `<div class="${dateClass} today day">${i}</div>`
         } else {
-            days += `<div class="${dateClass}">${i}</div>`
+            days += `<div class="${dateClass} day">${i}</div>`
         }
     }
 
@@ -69,7 +69,7 @@ function renderCalendar(currentDate) {
         date.setMonth(currentDate.getMonth() + 1);
         date.setDate(j);
         let dateClass = formatDate(date.getFullYear(), (date.getMonth() + 1), date.getDate());
-        days += `<div class="${dateClass} next-date">${j}</div>`;
+        days += `<div class="${dateClass} next-date day">${j}</div>`;
     }
     
     monthDays.innerHTML = days; 
@@ -127,4 +127,41 @@ function printHolidaysToCalendar(dayDiv, holidays) {
     todoReminderDiv.className = 'todo-reminder';
     todoReminderDiv.innerText = '1'
     dayDiv.append(todoReminderDiv);
+}
+
+
+function clickCalendarDay() {
+    const dayBtns = document.querySelectorAll('.day');
+    dayBtns.forEach(dayBtn => {
+        dayBtn.addEventListener('click', getFirstClassNameOfDay);
+        })
+    }
+
+/** Retrieves one fo the class names and converts it to date string */
+function getFirstClassNameOfDay() {
+    let dayBtn = event.target;
+    let classNameOfDay = dayBtn.className.split(" ")[0];
+    const selectedDate = new Date(classNameOfDay);
+    showTodosSelectedDate(selectedDate);
+}
+
+function showTodosSelectedDate(selectedDate) {
+    const todoListSelected = document.querySelector('.todoList-selected');
+    const todoListTitle = document.querySelector('.selected');
+    let todoArr = getTodoList();
+    let newLiTag = '';
+    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
+    filter.forEach((element, index) => {
+        newLiTag += `<li>${element.description}<span onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`;
+    });
+    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
+    todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
+    inputBox.value = ""; // once task added leave the input 
+    dateBox.value = "";
+
+    if(filter.length > 0){ // if array length is greater than 0
+        deleteAllTodaysTodoBtn.classList.add("active"); // active the clearall button
+    } else{
+        deleteAllTodaysTodoBtn.classList.remove("active");// unactive the clearall button
+    }
 }

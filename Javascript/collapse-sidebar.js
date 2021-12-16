@@ -15,9 +15,20 @@ function toggleTodo(event) {
         } else {
           todoList.style.display = "block";
           expandBtn.classList.remove('fa-plus-circle');
-          expandBtn.classList.add('fa-minus-circle')
+          expandBtn.classList.add('fa-minus-circle');
         }
-      }
+}
+
+function toggleClearAllButton() {
+    let parentDiv = event.target.parentNode;
+    let todoList = parentDiv.nextElementSibling;
+    const clearBtn = document.getElementById('clear-all-btn');
+    if (todoList.style.display !== "none") {
+      clearBtn.style.display = "block";
+  } else {
+      clearBtn.style.display = "none";
+  }
+}
 
 
 // collapse all open content
