@@ -113,13 +113,13 @@ function deleteTask (index){
     // after remove the li again update the local storage 
     localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
     showTodosAll(); //calling showTasks function
+    showTodosToday(); //calling showTodosToday function
 }
 
 // delete all tasks function
 function deleteAllTodaysTodo() {
 
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
-    console.log(new Date().toDateString());
 
 
     todoArr = []; // empty an array
@@ -128,7 +128,3 @@ function deleteAllTodaysTodo() {
     showTodosToday(); //calling showTasks function
 }
 
-
-
-
-// LEFT TO DO: Pending task have to show 0. keep task when reload. Delete localstorage so it wont show old storage.
