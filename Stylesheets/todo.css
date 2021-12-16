@@ -122,16 +122,21 @@
     margin-top: 20px;
 }
 
-#todo-footer button {
+#todo-footer {
+    font-size: 1rem;
+}
+#clear-all-btn {
+    font-family: 'Montserrat', sans-serif;
     border: none;
     outline: none;
     background: #b323a7;
     color: white;
-    font-size: 15px;
+    white-space: nowrap;
+    font-size: 0.8rem;
     margin-left: 5px;
     cursor: pointer;
     border-radius: 3px;
-    padding: 6px 10px;
+    padding: 0.2rem 0.6rem;
     opacity: 0.37;
     pointer-events: none;
 }
