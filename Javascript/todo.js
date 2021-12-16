@@ -51,7 +51,6 @@ function createTodo() {
 // if user click enter to add todo
 
 function pressedEnter(event) {
-    console.log(event.keyCode);
     if (event.keyCode === 13) {
         if (inputBox.value == "") {
             return false;
@@ -106,7 +105,6 @@ function showTodosAll(){
 
 // delete task function
 function deleteTask(index) {
-    console.log(index)
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage); 
     todoArr.splice(index, 1); // delete or remove the paricular indexed li
@@ -118,15 +116,14 @@ function deleteTask(index) {
 
 // delete all tasks function
 function deleteAllTodaysTodo() {
-
-    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
-    console.log(new Date().toDateString());
-
-
-    todoArr = []; // empty an array
+    let getLocalStorage = localStorage.getItem("New Todo");
+    todoArr = JSON.parse(getLocalStorage); 
+    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() !== new Date().toDateString() });
+    todoArr = filter // empty an array
     // after delete all task again update the local storage 
     localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
     showTodosToday(); //calling showTasks function
+    showTodosAll();
 }
 
 
