@@ -1,6 +1,7 @@
 function initCalendar(currentDate) {
     renderCalendar(currentDate);
     fetchHolidaysForThreeYears();  
+    showNoOfTodosOnCalendar();
 }
 
 /** Renders the calendar */
@@ -121,11 +122,12 @@ function printHolidaysToCalendar(dayDiv, holidays) {
     reminderDiv.className = 'holiday-reminder';
     reminderDiv.innerHTML = holidays;
     dayDiv.append(reminderDiv);
+}
 
-// ********* IMPORTANT: to be moved under todo reminder function !!!!!!!!
+function printTodoToCalendar(dayDiv, todoNumber) {
     const todoReminderDiv = document.createElement('div');
     todoReminderDiv.className = 'todo-reminder';
-    todoReminderDiv.innerText = '1'
+    todoReminderDiv.innerText = todoNumber;
     dayDiv.append(todoReminderDiv);
 }
 
@@ -141,6 +143,7 @@ function clickCalendarDay() {
 function getFirstClassNameOfDay() {
     let dayBtn = event.target;
     let classNameOfDay = dayBtn.className.split(" ")[0];
+    console.log({classNameOfDay})
     const selectedDate = new Date(classNameOfDay);
     showTodosSelectedDate(selectedDate);
 }
@@ -158,10 +161,33 @@ function showTodosSelectedDate(selectedDate) {
     todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
     
     let icon = todoListTitle.nextElementSibling;
-    if(filter.length > 0){ 
+    if (filter.length > 0) { 
         icon.classList.remove("disable");
         toggleTodo(event);
-    } else{
+    } else {
         icon.classList.add("disable");
     }
+}
+
+
+function showNoOfTodosOnCalendar() {
+    let days = document.getElementsByClassName('day'); 
+    let daysArr = [];
+    for (let i = 0; i < days.length; i++) {
+        daysArr = (days[i].className.split(" ")[0]);
+        console.log(daysArr);
+
+        let todoArr = getTodoList();
+        const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(daysArr).toDateString() });
+        filter.forEach((element, index) => {
+            console.log("190: " + element.date)
+            console.log(index + 1)
+            console.log(filter)
+            let todoNumber = index + 1;
+            let dayDiv = document.getElementsByClassName(element.date);
+            if (filter.length > 0) { 
+                printTodoToCalendar(dayDiv[0], todoNumber)
+            }
+        });
+    } 
 }

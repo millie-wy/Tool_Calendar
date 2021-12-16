@@ -45,6 +45,7 @@ function createTodo() {
         localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
         showTodosAll(); //calling showTasks function
         showTodosToday();
+        showNoOfTodosOnCalendar();
         addBtn.classList.remove("active") // unactivates the add button
 }
 
