@@ -156,12 +156,12 @@ function showTodosSelectedDate(selectedDate) {
     });
     todoListTitle.innerHTML = new Date(selectedDate).toDateString();
     todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
-    inputBox.value = ""; // once task added leave the input 
-    dateBox.value = "";
-
-    if(filter.length > 0){ // if array length is greater than 0
-        deleteAllTodaysTodoBtn.classList.add("active"); // active the clearall button
+    
+    let icon = todoListTitle.nextElementSibling;
+    if(filter.length > 0){ 
+        icon.classList.remove("disable");
+        toggleTodo(event);
     } else{
-        deleteAllTodaysTodoBtn.classList.remove("active");// unactive the clearall button
+        icon.classList.add("disable");
     }
 }
