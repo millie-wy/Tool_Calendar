@@ -1,3 +1,5 @@
+/* Extra extra large devices 1600px and up */
+
 @media (min-width: 1600px) {
 
     .calendar { 
@@ -5,6 +7,8 @@
         max-width: 1400px;
     }
 }
+
+/* Extra large devices 1200px and up */
 
 @media (max-width: 1200px) {
        
@@ -20,17 +24,14 @@
         min-width: 500px;
     }
 
-    .todo-date-title, .todoList {
-        font-size: 0.8rem;
-    }
-
+    .todo-date-title, .todoList { font-size: 0.8rem;}
     .todo-reminder { right: 0px; }
-
-    .inputField > input, .todo-date {
-        font-size: 0.8rem;
-    }
+    .inputField > input, .todo-date { font-size: 0.8rem; }
 
 }
+
+/* Small to medium devices 768px and below but no less than 600px */
+
 @media (max-width: 768px) {
     
     header {
@@ -70,6 +71,11 @@
     .calendar { width: 95%;}
 
 }
+
+/* Extra small devices 600px and below */
+
 @media (max-width: 600px) {
+
     .calendar { display: none; }
+
 }
