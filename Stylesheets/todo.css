@@ -127,7 +127,7 @@
     position: absolute;
     right: -45px;
     color: white;
-    background: #43547B;
+    background: #a73131;
     width: 45px;
     height: 45px;
     text-align: center;
@@ -144,7 +144,6 @@
     width: 45px;
     height: 45px;
     text-align: center;
-    border-radius: 0 3px 3px 0;
     cursor: pointer;
     transition: all 0.3s ease;
 }
