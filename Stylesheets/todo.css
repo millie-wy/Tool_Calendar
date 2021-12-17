@@ -106,16 +106,17 @@
 }
 
 .inputField button {
-    width: 50px;
-    height: 1.5rem;
+    width: 52px;
+    height: 2.5rem;
     margin-left: 1rem;
     border: none;
     outline: none;
     background: #43547B;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
+    text-align: center;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 7px;
     opacity: 0.37;
     pointer-events: none;
 }
