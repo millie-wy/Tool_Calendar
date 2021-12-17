@@ -2,54 +2,63 @@ function initTodo() {
     showTodosToday();
     showTodosAll();
 }
+ /** Activates buttons for user when being pressed */
+ const inputBox = document.querySelector(".inputField input");
+ inputBox.addEventListener('keydown', pressedEnter);
+ inputBox.addEventListener('keyup', validateInput);
 
-const inputBox = document.querySelector(".inputField input");
-inputBox.addEventListener('keydown', pressedEnter);
-inputBox.addEventListener('keyup', validateInput);
+ /** Changes date in validateInputs */
+ const dateBox = document.querySelector(".todo-date");
+ dateBox.addEventListener('change', validateInput);
 
-const dateBox = document.querySelector(".todo-date");
-dateBox.addEventListener('change', validateInput);
-// dateBox.onchange = validateInput;    // same as this one
+ /** Creates a todo */
+ const addBtn = document.querySelector(".inputField button");
+ addBtn.addEventListener('click', createTodo);
 
-const addBtn = document.querySelector(".inputField button");
-addBtn.addEventListener('click', createTodo);
-
-const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
-deleteAllTodaysTodoBtn.addEventListener('click', deleteAllTodaysTodo);
-
+ /** Deletes all tasks when "clear all"-button being clicked */
+ const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
+ deleteAllTodaysTodoBtn.addEventListener('click', deleteAllTodaysTodo);
+ 
 const todoList = document.querySelector(".todoList-all");
 
-
+/**
+ * Activates the buttons when user enters values
+ */
 function validateInput() {
-    let userData = inputBox.value; // getting user entered value
+    let userData = inputBox.value; 
     let dateData = new Date(dateBox.value); 
-    let minDate = new Date(dateBox.min); // convert the string to a date
-    if (userData.trim() != 0 && dateData >= minDate ) {// if user values aren't only spaces
-        addBtn.classList.add("active") // activates the add button
+    let minDate = new Date(dateBox.min); 
+    if (userData.trim() != 0 && dateData >= minDate ) {
+        addBtn.classList.add("active") 
     } else {
-        addBtn.classList.remove("active") // unactivates the add button
+        addBtn.classList.remove("active") 
     }
 }
 
-// if user click on the add button
+/**
+ * Pushes user data to list and unaactivates the submit button
+ */
 function createTodo() {
-    let userData = inputBox.value; // getting user entered value
-    let dateData = dateBox.value; // getting user entered date
-    let getLocalStorage = localStorage.getItem("New Todo"); // Getting localstorage
-    if(getLocalStorage == null) { // if localstorage is empty
-        todoArr = [] // blank array
+    let userData = inputBox.value; 
+    let dateData = dateBox.value; 
+    let getLocalStorage = localStorage.getItem("New Todo"); 
+    if(getLocalStorage == null) { 
+        todoArr = [] 
     } else {
-        todoArr = JSON.parse(getLocalStorage); // transforming json string into a js object 
+        todoArr = JSON.parse(getLocalStorage); 
     }
-        todoArr.push({ description: userData, date: dateData }); // pushing or adding user data 
-        localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
-        showTodosAll(); //calling showTasks function
+        todoArr.push({ description: userData, date: dateData }); 
+        localStorage.setItem("New Todo", JSON.stringify(todoArr)); 
+        showTodosAll(); 
         showTodosToday();
         showNoOfTodosOnCalendar();
-        addBtn.classList.remove("active") // unactivates the add button
+        addBtn.classList.remove("active") 
 }
 
-// if user click enter to add todo
+/**
+* Set the 'Enter' key to call the same function as 'Send' pressed
+* @param {KeyboardEvent} event
+*/
 function pressedEnter(event) {
     if (event.keyCode === 13) {
         if (inputBox.value == "") {
@@ -59,16 +68,22 @@ function pressedEnter(event) {
     }
 }
 
+/**
+ * Retrieve data from localstorage
+ */
 function getTodoList() {
     let getLocalStorage = localStorage.getItem("New Todo");
-    if(getLocalStorage === null){ // if localstorage is empty
-        todoArr = [] // blank array
+    if(getLocalStorage === null){ 
+        todoArr = [] 
     } else{
-        todoArr = JSON.parse(getLocalStorage); // transforming json string into a js object 
+        todoArr = JSON.parse(getLocalStorage); 
     }
     return todoArr;
 }
 
+/**
+ * Adds new li element under todays todos, when todo is added user leaves input and button unactivates
+ */
 function showTodosToday() {
     let todoArr = getTodoList();
     const todoListToday = document.querySelector(".todoList-today");
@@ -80,44 +95,49 @@ function showTodosToday() {
         newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
                 ;
     });
-    todoListToday.innerHTML = newLiTag; // adding new li tag inside ul tag
-    inputBox.value = ""; // once task added leave the input 
+    todoListToday.innerHTML = newLiTag;
+    inputBox.value = ""; 
     dateBox.value = "";
 
-    pendingNumber.textContent = filter.length; //passing the lenght value in pendingNumber
-    if(filter.length > 0){ // if array length is greater than 0
-        deleteAllTodaysTodoBtn.classList.add("active"); // active the clearall button
+    pendingNumber.textContent = filter.length;
+    if(filter.length > 0){ 
+        deleteAllTodaysTodoBtn.classList.add("active");
     } else{
-        deleteAllTodaysTodoBtn.classList.remove("active");// unactive the clearall button
+        deleteAllTodaysTodoBtn.classList.remove("active");
     }
 }
 
-//function to add task list inside ul
+
+/**
+ * Adds new li element under all todos, when todo is added user leaves input and button unactivates
+ */
 function showTodosAll(){
     let todoArr = getTodoList();
     let newLiTag = '';
-    // const filter = todoArr.filter(element => element.date == new Date())
-   // let getLocalStorage = localStorage.getItem("New Todo");
     todoArr.forEach((element, index) => {
         newLiTag += `<li>${element.description}<p class="date-display">${element.date}</p><span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span> <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
-    todoList.innerHTML = newLiTag; // adding new li tag inside ul tag
-    inputBox.value = ""; // once task added leave the input 
+    todoList.innerHTML = newLiTag;
+    inputBox.value = "";
 }
 
-// delete task function
+/**
+ * Deletes particular todo and updates local storage
+ */
 function deleteTask(index) {
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage); 
-    todoArr.splice(index, 1); // delete or remove the paricular indexed li
-    // after remove the li again update the local storage 
-    localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
-    showTodosAll(); //calling showTasks function
-    showTodosToday(); //calling showTodosToday function
-    showTodosSelectedDate(); //calling showTodosSelectedDate function
+    todoArr.splice(index, 1);
+    localStorage.setItem("New Todo", JSON.stringify(todoArr));
+    showTodosAll();
+    showTodosToday();
+    showTodosSelectedDate(); 
 }
 
-// edit task function
+
+/**
+ * Pushes inputBox and dateBox value back to input and replaces with new value
+ */
 function editTask(index) {
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage);
@@ -128,19 +148,25 @@ function editTask(index) {
     validateInput();
 }
 
-// delete all tasks function
+/**
+ * Deletes all todos and updates local storage
+ */
 function deleteAllTodaysTodo() {
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage); 
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() !== new Date().toDateString() });
-    todoArr = filter // empty an array
-    // after delete all task again update the local storage 
-    localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
-    showTodosToday(); //calling showTasks function
+    todoArr = filter 
+    localStorage.setItem("New Todo", JSON.stringify(todoArr));
+    showTodosToday(); 
     showTodosAll();
 }
 
+/**
+ * Selects the date that the user press, filter the todos and adds new li tag inside ul tag
+ * @param {string} selectedDate 
+ */
 function showTodosSelectedDate(selectedDate) {
+    
     const todoListSelected = document.querySelector('.todoList-selected');
     const todoListTitle = document.querySelector('.selected');
     let todoArr = getTodoList();
@@ -150,7 +176,7 @@ function showTodosSelectedDate(selectedDate) {
         newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
     todoListTitle.innerHTML = new Date(selectedDate).toDateString();
-    todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
+    todoListSelected.innerHTML = newLiTag;
     
     let icon = todoListTitle.nextElementSibling;
     if (filter.length > 0) { 

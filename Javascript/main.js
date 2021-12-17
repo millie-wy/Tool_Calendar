@@ -45,4 +45,6 @@ function addEventListeners() {
         expandBtn.addEventListener('click', toggleTodo);
     })
     expandBtns[0].addEventListener('click', toggleClearAllButton);
+
 }
+
