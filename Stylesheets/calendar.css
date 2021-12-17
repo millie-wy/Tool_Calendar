@@ -64,7 +64,7 @@ main {
     grid-template-columns: repeat(7, 14.25%);
     padding: 0.5rem 0.2rem 0.5rem; 
     margin-top: 1rem;
-    background-color: #ffffffad;
+    background-color: rgba(255, 255, 255, 0.596);
     border-radius: 10px;
 }
 
