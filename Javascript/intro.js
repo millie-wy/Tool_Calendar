@@ -43,7 +43,7 @@ function getCurrentTime(today) {
 function renderBackground() {
     console.log('render background called')
     const bgSrc = document.getElementById('lottie');
-    const currentMonth = new Date(2021, 0,1).getMonth();
+    const currentMonth = new Date(2021, 0, 1).getMonth();
     console.log(currentMonth);
     switch (currentMonth) {
         case 11:
@@ -51,11 +51,12 @@ function renderBackground() {
         case 1:
             bgSrc.setAttribute('src', "https://assets8.lottiefiles.com/packages/lf20_vrbtloig.json");
             console.log('winter');
+            console.log(bgSrc)
             break;
         case 2:
         case 3: 
         case 4:
-            bgSrc.setAttribute('src', "./Media/01.json");
+            bgSrc.setAttribute('src', "https://assets1.lottiefiles.com/packages/lf20_anqiva4s.json");
             console.log('spring');
             break;
         case 5:
