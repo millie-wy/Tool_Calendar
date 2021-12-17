@@ -175,14 +175,10 @@ function showNoOfTodosOnCalendar() {
     let daysArr = [];
     for (let i = 0; i < days.length; i++) {
         daysArr = (days[i].className.split(" ")[0]);
-        console.log(daysArr);
 
         let todoArr = getTodoList();
         const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(daysArr).toDateString() });
         filter.forEach((element, index) => {
-            console.log("190: " + element.date)
-            console.log(index + 1)
-            console.log(filter)
             let todoNumber = index + 1;
             let dayDiv = document.getElementsByClassName(element.date);
             if (filter.length > 0) { 
