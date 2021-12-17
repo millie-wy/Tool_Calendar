@@ -26,6 +26,10 @@
 
     .todo-reminder { right: 0px; }
 
+    .inputField > input, .todo-date {
+        font-size: 0.8rem;
+    }
+
 }
 @media (max-width: 768px) {
     
