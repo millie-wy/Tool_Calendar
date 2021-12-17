@@ -84,7 +84,8 @@
     height: 2.2rem;
     outline: none;
     border: 1px solid white;
-    border-radius: 3px;
+    font-size: 1rem;
+    border-radius: 10px;
     padding-left: 0.5rem;
 }
 
@@ -95,6 +96,7 @@
 .input-date-and-button {
     margin: auto;
     width: 100%;
+    margin-left: 1rem;
 }
 
 .todo-date {
@@ -196,4 +198,24 @@
 
 .disable {
     display: none;
+}
+
+/* Styling for date input */
+
+input[type="date"] {
+    background-color: #e4d2d5;
+    padding: 5px;
+    font-size: 1rem;
+    color: #43547B;
+    font-family: 'Montserrat';
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    width: 11.5rem;
+}
+
+::-webkit-calendar-picker-indicator {
+    color: #43547B;
+    padding: .4rem;
+    cursor: pointer;
 }
