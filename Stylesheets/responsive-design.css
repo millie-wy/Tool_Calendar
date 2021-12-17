@@ -20,6 +20,10 @@
         min-width: 500px;
     }
 
+    .todo-date-title, .todoList {
+        font-size: 0.8rem;
+    }
+
     .todo-reminder { right: 0px; }
 
 }
@@ -58,7 +62,7 @@
         overflow-y: scroll;
     }
 
-    .todoToday { max-width: unset; }
+    .todoToday, .todo-selected, .todo-all { max-width: unset; }
     .calendar { width: 95%;}
 
 }
