@@ -4,7 +4,10 @@ function initCalendar(currentDate) {
     showNoOfTodosOnCalendar();
 }
 
-/** Renders the calendar */
+/**
+ * Renders the calendar
+ * @param {Date} currentDate 
+ */
 function renderCalendar(currentDate) {
     currentDate.setDate(1); 
     const lastDayOfCurrentMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -108,14 +111,7 @@ function printHolidaysToCalendar(dayDiv, holidays) {
     dayDiv.append(reminderDiv);
 }
 
-function printTodoToCalendar(dayDiv, todoNumber) {
-    const todoReminderDiv = document.createElement('div');
-    todoReminderDiv.className = 'todo-reminder';
-    todoReminderDiv.innerText = todoNumber;
-    dayDiv.append(todoReminderDiv);
-}
-
-
+/** Run function for retrieving the class name as a calendar day clicked */
 function clickCalendarDay() {
     const dayBtns = document.querySelectorAll('.day');
     dayBtns.forEach(dayBtn => {
@@ -132,6 +128,7 @@ function getFirstClassNameOfDay() {
     showTodosSelectedDate(selectedDate);
 }
 
+/** Splits class name of calendar day and compare it with items on todo list */
 function showNoOfTodosOnCalendar() {
     let days = document.getElementsByClassName('day'); 
     let daysArr = [];
@@ -148,4 +145,16 @@ function showNoOfTodosOnCalendar() {
             }
         });
     } 
+}
+
+/**
+ * Prints the number of todos in the div for calendar days
+ * @param {String} dayDiv 
+ * @param {String} todoNumber 
+ */
+ function printTodoToCalendar(dayDiv, todoNumber) {
+    const todoReminderDiv = document.createElement('div');
+    todoReminderDiv.className = 'todo-reminder';
+    todoReminderDiv.innerText = todoNumber;
+    dayDiv.append(todoReminderDiv);
 }
