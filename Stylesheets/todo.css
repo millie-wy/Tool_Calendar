@@ -1,32 +1,33 @@
 #todo-container {
-    background-color: #ffffff77;
     display: flex;
-    height: auto;
     margin: 1rem;
-    padding: 1.2rem;
     border-radius: 20px;
 }
 
 .todoToday, .todo-selected, .todo-all {
     max-width: 400px;
-    height: auto;
     background-color: white;
     border-radius: 20px;
     width: 100%;
     margin: 0.2rem;
-    padding: 20px;
+    padding: 1rem;
 }
+
 
 .todo-fold {
     font-size: 1.5rem;
     cursor: pointer;
+    align-self: center;
+    margin-left: 1rem;
 }
 
 .todo-date-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 2.1rem;
-    padding-top: .3rem;
     border-radius: 10px;
+    height: 2rem;
     font-weight: 400;
     text-align: center;
     color: #43547B;
@@ -89,7 +90,7 @@
 }
 
 .todo-item {
-    width: 90%;
+    width: 100%;
 }
 
 .input-date-and-button {
@@ -171,8 +172,9 @@
 }
 
 #todo-footer {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
+
 #clear-all-btn {
     font-family: 'Montserrat', sans-serif;
     border: none;
