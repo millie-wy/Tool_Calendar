@@ -148,27 +148,6 @@ function getFirstClassNameOfDay() {
     showTodosSelectedDate(selectedDate);
 }
 
-function showTodosSelectedDate(selectedDate) {
-    const todoListSelected = document.querySelector('.todoList-selected');
-    const todoListTitle = document.querySelector('.selected');
-    let todoArr = getTodoList();
-    let newLiTag = '';
-    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
-    filter.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
-    });
-    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
-    todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
-    
-    let icon = todoListTitle.nextElementSibling;
-    if (filter.length > 0) { 
-        icon.classList.remove("disable");
-        toggleTodo(event);
-    } else {
-        icon.classList.add("disable");
-    }
-}
-
 
 function showNoOfTodosOnCalendar() {
     let days = document.getElementsByClassName('day'); 
