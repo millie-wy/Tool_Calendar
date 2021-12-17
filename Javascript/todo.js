@@ -97,6 +97,7 @@ function showTodosAll(){
     let todoArr = getTodoList();
     let newLiTag = '';
     // const filter = todoArr.filter(element => element.date == new Date())
+   // let getLocalStorage = localStorage.getItem("New Todo");
     todoArr.forEach((element, index) => {
         newLiTag += `<li>${element.description}<p class="date-display">${element.date}</p><span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span> <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
@@ -113,6 +114,7 @@ function deleteTask(index) {
     localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
     showTodosAll(); //calling showTasks function
     showTodosToday(); //calling showTodosToday function
+    showTodosSelectedDate(); //calling showTodosSelectedDate function
 }
 
 // edit task function
@@ -136,5 +138,26 @@ function deleteAllTodaysTodo() {
     localStorage.setItem("New Todo", JSON.stringify(todoArr)); // transforming js object to a json string
     showTodosToday(); //calling showTasks function
     showTodosAll();
+}
+
+function showTodosSelectedDate(selectedDate) {
+    const todoListSelected = document.querySelector('.todoList-selected');
+    const todoListTitle = document.querySelector('.selected');
+    let todoArr = getTodoList();
+    let newLiTag = '';
+    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
+    filter.forEach((element, index) => {
+        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
+    });
+    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
+    todoListSelected.innerHTML = newLiTag; // adding new li tag inside ul tag
+    
+    let icon = todoListTitle.nextElementSibling;
+    if (filter.length > 0) { 
+        icon.classList.remove("disable");
+        toggleTodo(event);
+    } else {
+        icon.classList.add("disable");
+    }
 }
 

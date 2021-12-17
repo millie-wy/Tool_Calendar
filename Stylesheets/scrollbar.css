@@ -1,0 +1,11 @@
+/* Aside scrollbar */
+aside::-webkit-scrollbar {
+    display: none;
+    width: 7px;
+  }
+
+/* Body scrollbar */
+main::-webkit-scrollbar {
+  display: none;
+  width: 7px;
+}

@@ -11,7 +11,7 @@ main {
 
 .calendar { 
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 4rem;
     width: 80%;  
     min-width: 800px;
     min-height: 550px;
@@ -86,7 +86,7 @@ main {
 }
 
 .today { 
-    background-color: #FEE1E5; 
+    background-color: #e4d2d5; 
     border-radius: 3px; 
 }
 
@@ -108,7 +108,7 @@ main {
     right: 15px;
     top: 0px;
     color: whitesmoke;
-    background-color: red;
+    background-color: #2d3d61a6;
     border-radius: 100%;
     font-size: 0.6rem;
     font-weight: 600;
