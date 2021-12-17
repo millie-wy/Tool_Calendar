@@ -8,5 +8,6 @@ aside {
 }
 
 #intro-container {
-    height: 12rem;
+    height: 11rem;
+    padding-top: 1rem;
 }
