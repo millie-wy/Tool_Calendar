@@ -148,7 +148,6 @@ function getFirstClassNameOfDay() {
     showTodosSelectedDate(selectedDate);
 }
 
-
 function showNoOfTodosOnCalendar() {
     let days = document.getElementsByClassName('day'); 
     let daysArr = [];
