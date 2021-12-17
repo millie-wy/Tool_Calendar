@@ -5,7 +5,7 @@ This is an interactive calendar made with javascript, html and css. A schoolproj
 Made by:
 Sara Lindqvist, [Github](https://github.com/saralindqvist)
 </br>
-Wing Yang Cheung, [Github](https://github.com/millie-wy)
+Wing Yan Cheung, [Github](https://github.com/millie-wy)
 </br>
 Fia Andersson, [Github](https://github.com/fiababiakandersson)
 
