@@ -1,6 +1,7 @@
 function initIntro() {
     displayCurrentDate();
     startClock();
+    renderBackground();
 }
 
 /** Displays current date */
@@ -37,4 +38,38 @@ function getCurrentTime(today) {
     if (minutes < 10) minutes = "0" + minutes;
     if (seconds < 10) seconds = "0" + seconds;
     return hours + ":" + minutes + ":" + seconds;
+}
+
+function renderBackground() {
+    console.log('render background called')
+    const bgSrc = document.getElementById('lottie');
+    const currentMonth = new Date(2021, 0, 1).getMonth();
+    console.log(currentMonth);
+    switch (currentMonth) {
+        case 11:
+        case 0:
+        case 1:
+            bgSrc.setAttribute('src', "https://assets8.lottiefiles.com/packages/lf20_vrbtloig.json");
+            console.log('winter');
+            console.log(bgSrc)
+            break;
+        case 2:
+        case 3: 
+        case 4:
+            bgSrc.setAttribute('src', "https://assets1.lottiefiles.com/packages/lf20_anqiva4s.json");
+            console.log('spring');
+            break;
+        case 5:
+        case 6:
+        case 7: 
+            bgSrc.setAttribute('src', "https://assets5.lottiefiles.com/packages/lf20_fm0ra1ob.json");
+            console.log('summer');
+            break;
+        case 8:
+        case 9:
+        case 10:
+            bgSrc.setAttribute('src', "https://assets8.lottiefiles.com/packages/lf20_d4atdgyz.json");
+            console.log('autumn');
+            break;
+    }   
 }
