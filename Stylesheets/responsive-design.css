@@ -20,6 +20,10 @@
         min-width: 500px;
     }
 
+    .todo-date-title, .todoList {
+        font-size: 0.8rem;
+    }
+
     .todo-reminder { right: 0px; }
 
 }
