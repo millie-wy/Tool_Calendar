@@ -2,29 +2,12 @@ function initTodo() {
     showTodosToday();
     showTodosAll();
 }
- /** Activates buttons for user when being pressed */
- const inputBox = document.querySelector(".inputField input");
- inputBox.addEventListener('keydown', pressedEnter);
- inputBox.addEventListener('keyup', validateInput);
 
- /** Changes date in validateInputs */
- const dateBox = document.querySelector(".todo-date");
- dateBox.addEventListener('change', validateInput);
-
- /** Creates a todo */
- const addBtn = document.querySelector(".inputField button");
- addBtn.addEventListener('click', createTodo);
-
- /** Deletes all tasks when "clear all"-button being clicked */
- const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
- deleteAllTodaysTodoBtn.addEventListener('click', deleteAllTodaysTodo);
- 
-const todoList = document.querySelector(".todoList-all");
-
-/**
- * Activates the buttons when user enters values
- */
+/** Activates the buttons when user enters values */
 function validateInput() {
+    const inputBox = document.querySelector(".inputField input");
+    const dateBox = document.querySelector(".todo-date");
+    const addBtn = document.querySelector(".inputField button");
     let userData = inputBox.value; 
     let dateData = new Date(dateBox.value); 
     let minDate = new Date(dateBox.min); 
@@ -35,10 +18,11 @@ function validateInput() {
     }
 }
 
-/**
- * Pushes user data to list and unaactivates the submit button
- */
+/** Pushes user data to list and unaactivates the submit button */
 function createTodo() {
+    const inputBox = document.querySelector(".inputField input");
+    const dateBox = document.querySelector(".todo-date");
+    const addBtn = document.querySelector(".inputField button");
     let userData = inputBox.value; 
     let dateData = dateBox.value; 
     let getLocalStorage = localStorage.getItem("New Todo"); 
@@ -60,6 +44,7 @@ function createTodo() {
 * @param {KeyboardEvent} event
 */
 function pressedEnter(event) {
+    const inputBox = document.querySelector(".inputField input");
     if (event.keyCode === 13) {
         if (inputBox.value == "") {
             return false;
@@ -68,9 +53,7 @@ function pressedEnter(event) {
     }
 }
 
-/**
- * Retrieve data from localstorage
- */
+/** Retrieve data from localstorage */
 function getTodoList() {
     let getLocalStorage = localStorage.getItem("New Todo");
     if(getLocalStorage === null){ 
@@ -81,13 +64,14 @@ function getTodoList() {
     return todoArr;
 }
 
-/**
- * Adds new li element under todays todos, when todo is added user leaves input and button unactivates
- */
+/** Adds new li element under todays todos, when todo is added user leaves input and button unactivates */
 function showTodosToday() {
     let todoArr = getTodoList();
     const todoListToday = document.querySelector(".todoList-today");
     const pendingNumber = document.querySelector(".pendingNumber");
+    const inputBox = document.querySelector(".inputField input");
+    const dateBox = document.querySelector(".todo-date");
+    const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
 
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
@@ -107,11 +91,10 @@ function showTodosToday() {
     }
 }
 
-
-/**
- * Adds new li element under all todos, when todo is added user leaves input and button unactivates
- */
-function showTodosAll(){
+/** Adds new li element under all todos, when todo is added user leaves input and button unactivates */
+function showTodosAll() {
+    const inputBox = document.querySelector(".inputField input");
+    const todoList = document.querySelector(".todoList-all");
     let todoArr = getTodoList();
     let newLiTag = '';
     todoArr.forEach((element, index) => {
@@ -122,7 +105,8 @@ function showTodosAll(){
 }
 
 /**
- * Deletes particular todo and updates local storage
+ * Deletes particular todo and updates local storage 
+ * @param {Number} index 
  */
 function deleteTask(index) {
     let getLocalStorage = localStorage.getItem("New Todo");
@@ -134,11 +118,13 @@ function deleteTask(index) {
     showTodosSelectedDate(); 
 }
 
-
 /**
  * Pushes inputBox and dateBox value back to input and replaces with new value
+ * @param {Number} index 
  */
 function editTask(index) {
+    const inputBox = document.querySelector(".inputField input");
+    const dateBox = document.querySelector(".todo-date");
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage);
     inputBox.value = todoArr[index].description;
@@ -148,9 +134,7 @@ function editTask(index) {
     validateInput();
 }
 
-/**
- * Deletes all todos and updates local storage
- */
+/** Deletes all todos and updates local storage */
 function deleteAllTodaysTodo() {
     let getLocalStorage = localStorage.getItem("New Todo");
     todoArr = JSON.parse(getLocalStorage); 
@@ -163,7 +147,7 @@ function deleteAllTodaysTodo() {
 
 /**
  * Selects the date that the user press, filter the todos and adds new li tag inside ul tag
- * @param {string} selectedDate 
+ * @param {String} selectedDate 
  */
 function showTodosSelectedDate(selectedDate) {
     

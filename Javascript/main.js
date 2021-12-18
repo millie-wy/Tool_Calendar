@@ -1,5 +1,6 @@
 window.addEventListener('load', main);
 
+/* Keeps track on the current month while prev/next month button clicked */
 let calendar = {
     currentDate: new Date(),
     next() {
@@ -45,6 +46,23 @@ function addEventListeners() {
         expandBtn.addEventListener('click', toggleTodo);
     })
     expandBtns[0].addEventListener('click', toggleClearAllButton);
+
+    /** Activates buttons for user when being pressed */
+    const inputBox = document.querySelector(".inputField input");
+    inputBox.addEventListener('keydown', pressedEnter);
+    inputBox.addEventListener('keyup', validateInput);
+
+    /** Changes date in validateInputs */
+    const dateBox = document.querySelector(".todo-date");
+    dateBox.addEventListener('change', validateInput);
+
+    /** Creates a todo */
+    const addBtn = document.querySelector(".inputField button");
+    addBtn.addEventListener('click', createTodo);
+
+    /** Deletes all tasks when "clear all"-button being clicked */
+    const deleteAllTodaysTodoBtn = document.querySelector(".footer button");
+    deleteAllTodaysTodoBtn.addEventListener('click', deleteAllTodaysTodo);
 
 }
 
