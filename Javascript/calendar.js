@@ -128,28 +128,29 @@ function getFirstClassNameOfDay() {
     showTodosSelectedDate(selectedDate);
 }
 
-/** Splits class name of calendar day and compare it with items on todo list */
+/** Updates the todo reminder for each calendar days in the current month */
 function showNoOfTodosOnCalendar() {
     let days = document.getElementsByClassName('day'); 
     let daysArr = [];
     for (let i = 0; i < days.length; i++) {
         daysArr = (days[i].className.split(" ")[0]);
 
+        let dayDiv = document.getElementsByClassName(daysArr);
+        removeTodoReminder(dayDiv[0]);
+
         let todoArr = getTodoList();
         const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(daysArr).toDateString() });
         filter.forEach((element, index) => {
             let todoNumber = index + 1;
             let dayDiv = document.getElementsByClassName(element.date);
-            if (filter.length > 0) { 
-                printTodoToCalendar(dayDiv[0], todoNumber)
-            }
+            printTodoToCalendar(dayDiv[0], todoNumber);
         });
     } 
 }
 
 /**
- * Prints the number of todos in the div for calendar days
- * @param {String} dayDiv 
+ * Prints todo reminder (the number of todos) for calendar days
+ * @param {Element} dayDiv 
  * @param {String} todoNumber 
  */
  function printTodoToCalendar(dayDiv, todoNumber) {
@@ -157,4 +158,15 @@ function showNoOfTodosOnCalendar() {
     todoReminderDiv.className = 'todo-reminder';
     todoReminderDiv.innerText = todoNumber;
     dayDiv.append(todoReminderDiv);
+}
+
+/**
+ * Removes todo reminder for calendar days  
+ * @param {Element} dayDiv 
+ */
+function removeTodoReminder(dayDiv) {
+    const todoWithReminder = dayDiv.getElementsByClassName('todo-reminder');
+    if (todoWithReminder.length > 0) {
+        dayDiv.removeChild(todoWithReminder[0]);
+    }
 }
