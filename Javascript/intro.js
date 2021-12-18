@@ -49,26 +49,21 @@ function renderBackground() {
         case 0:
         case 1:
             lottieName = "lf20_vrbtloig";
-            console.log('winter');
-            console.log(bgSrc)
             break;
         case 2:
         case 3: 
         case 4:
             lottieName = "lf20_anqiva4s";
-            console.log('spring');
             break;
         case 5:
         case 6:
         case 7: 
             lottieName = "lf20_fm0ra1ob";
-            console.log('summer');
             break;
         case 8:
         case 9:
         case 10:
             lottieName = "lf20_d4atdgyz";
-            console.log('autumn');
             break;
     } 
     bgSrc.load(`https://assets8.lottiefiles.com/packages/${lottieName}.json`);
