@@ -8,15 +8,18 @@ function toggleTodo(event) {
     let expandBtn = event.target;
     let parentDiv = event.target.parentNode;
     let todoList = parentDiv.nextElementSibling;
-        if (todoList.style.display !== "none") {
-            todoList.style.display = "none";
-            expandBtn.classList.remove('fa-minus-circle');
-            expandBtn.classList.add('fa-plus-circle')
-        } else {
-          todoList.style.display = "block";
-          expandBtn.classList.remove('fa-plus-circle');
-          expandBtn.classList.add('fa-minus-circle');
-        }
+    if (todoList === null) {
+      return 
+    }
+    if (todoList.style.display !== "none") {
+        todoList.style.display = "none";
+        expandBtn.classList.remove('fa-minus-circle');
+        expandBtn.classList.add('fa-plus-circle')
+    } else {
+      todoList.style.display = "block";
+      expandBtn.classList.remove('fa-plus-circle');
+      expandBtn.classList.add('fa-minus-circle');
+    }
 }
 
 function toggleClearAllButton() {

@@ -1,8 +1,9 @@
 aside {
     background-color: #F5EAEC;
-    position: fixed;
+    position: relative;
     top: 5rem;
-    height: calc(100vh - 4rem);
+    bottom: 2rem;
+    height: calc(100vh - 6.5rem);
     width: 400px;
     overflow-y: scroll;  /* to be replaced by the correct scrollbar setting later */
 }
@@ -21,5 +22,4 @@ aside {
     max-height: 13rem;
     z-index: -99;
     overflow: hidden;
-
 }
