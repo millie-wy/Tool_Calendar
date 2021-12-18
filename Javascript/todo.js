@@ -18,7 +18,7 @@ function validateInput() {
     }
 }
 
-/** Pushes user data to list and unaactivates the submit button */
+/** Pushes user data to list and inactivates the submit button */
 function createTodo() {
     const inputBox = document.querySelector(".inputField input");
     const dateBox = document.querySelector(".todo-date");
@@ -64,7 +64,7 @@ function getTodoList() {
     return todoArr;
 }
 
-/** Adds new li element under todays todos, when todo is added user leaves input and button unactivates */
+/** Adds new li element under todays todos, when todo is added user leaves input and button inactivates */
 function showTodosToday() {
     let todoArr = getTodoList();
     const todoListToday = document.querySelector(".todoList-today");
@@ -131,7 +131,9 @@ function editTask(index) {
     dateBox.value = todoArr[index].date;
     todoArr.splice(index, 1);
     localStorage.setItem("New Todo", JSON.stringify(todoArr));
+    dateBox.scrollIntoView();
     validateInput();
+    showNoOfTodosOnCalendar();
 }
 
 /** Deletes all todos and updates local storage */
@@ -143,6 +145,7 @@ function deleteAllTodaysTodo() {
     localStorage.setItem("New Todo", JSON.stringify(todoArr));
     showTodosToday(); 
     showTodosAll();
+    showNoOfTodosOnCalendar();
 }
 
 /**
