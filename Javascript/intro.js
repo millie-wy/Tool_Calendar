@@ -41,35 +41,35 @@ function getCurrentTime(today) {
 }
 
 function renderBackground() {
-    console.log('render background called')
     const bgSrc = document.getElementById('lottie');
-    const currentMonth = new Date(2021, 0, 1).getMonth();
-    console.log(currentMonth);
+    const currentMonth = new Date().getMonth();
+    let lottieName = "";
     switch (currentMonth) {
         case 11:
         case 0:
         case 1:
-            bgSrc.setAttribute('src', "https://assets8.lottiefiles.com/packages/lf20_vrbtloig.json");
+            lottieName = "lf20_vrbtloig";
             console.log('winter');
             console.log(bgSrc)
             break;
         case 2:
         case 3: 
         case 4:
-            bgSrc.setAttribute('src', "https://assets1.lottiefiles.com/packages/lf20_anqiva4s.json");
+            lottieName = "lf20_anqiva4s";
             console.log('spring');
             break;
         case 5:
         case 6:
         case 7: 
-            bgSrc.setAttribute('src', "https://assets5.lottiefiles.com/packages/lf20_fm0ra1ob.json");
+            lottieName = "lf20_fm0ra1ob";
             console.log('summer');
             break;
         case 8:
         case 9:
         case 10:
-            bgSrc.setAttribute('src', "https://assets8.lottiefiles.com/packages/lf20_d4atdgyz.json");
+            lottieName = "lf20_d4atdgyz";
             console.log('autumn');
             break;
-    }   
+    } 
+    bgSrc.load(`https://assets8.lottiefiles.com/packages/${lottieName}.json`);
 }
