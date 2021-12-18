@@ -5,7 +5,6 @@ aside {
     height: calc(100vh - 6.5rem);
     width: 400px;
     overflow-y: scroll; 
-    z-index: -99;
 }
 
 #intro-container {
