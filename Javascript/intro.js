@@ -40,6 +40,7 @@ function getCurrentTime(today) {
     return hours + ":" + minutes + ":" + seconds;
 }
 
+/** Renders background based on current (real time) month */
 function renderBackground() {
     const bgSrc = document.getElementById('lottie');
     const currentMonth = new Date().getMonth();

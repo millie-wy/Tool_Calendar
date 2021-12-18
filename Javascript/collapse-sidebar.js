@@ -22,6 +22,7 @@ function toggleTodo(event) {
     }
 }
 
+/** Displays/hides clear all button when toggling todo */
 function toggleClearAllButton() {
     let parentDiv = event.target.parentNode;
     let todoList = parentDiv.nextElementSibling;
