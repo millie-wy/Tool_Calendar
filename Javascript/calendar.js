@@ -123,7 +123,6 @@ function clickCalendarDay() {
 function getFirstClassNameOfDay() {
     let dayBtn = event.target;
     let classNameOfDay = dayBtn.className.split(" ")[0];
-    console.log({classNameOfDay})
     const selectedDate = new Date(classNameOfDay);
     showTodosSelectedDate(selectedDate);
 }
