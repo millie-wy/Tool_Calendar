@@ -68,6 +68,10 @@ main {
     border-radius: 10px;
 }
 
+.day:hover {
+    background: #F5EAEC;
+}
+
 .day { 
     font-size: 22.4px; 
     margin: 10.4px; 
