@@ -3,18 +3,21 @@ function initTodo() {
     showTodosAll();
 }
 
+let isEditing = false;
+let editIndex;
+
 /** Activates the buttons when user enters values */
 function validateInput() {
     const inputBox = document.querySelector(".inputField input");
     const dateBox = document.querySelector(".todo-date");
     const addBtn = document.querySelector(".inputField button");
-    let userData = inputBox.value; 
+    let userData = inputBox.value;
     let dateData = new Date(dateBox.value); 
     let minDate = new Date(dateBox.min); 
     if (userData.trim() != 0 && dateData >= minDate ) {
-        addBtn.classList.add("active") 
+        addBtn.classList.add("active");
     } else {
-        addBtn.classList.remove("active") 
+        addBtn.classList.remove("active");
     }
 }
 
@@ -23,20 +26,21 @@ function createTodo() {
     const inputBox = document.querySelector(".inputField input");
     const dateBox = document.querySelector(".todo-date");
     const addBtn = document.querySelector(".inputField button");
+    let todoArr = getTodoList();
     let userData = inputBox.value; 
     let dateData = dateBox.value; 
-    let getLocalStorage = localStorage.getItem("New Todo"); 
-    if(getLocalStorage == null) { 
-        todoArr = [] 
-    } else {
-        todoArr = JSON.parse(getLocalStorage); 
+
+    if (isEditing) {
+        todoArr.splice(editIndex, 1);
+        isEditing = false;
     }
-        todoArr.push({ description: userData, date: dateData }); 
-        localStorage.setItem("New Todo", JSON.stringify(todoArr)); 
-        showTodosAll(); 
-        showTodosToday();
-        showNoOfTodosOnCalendar();
-        addBtn.classList.remove("active") 
+
+    todoArr.push({ description: userData, date: dateData }); 
+    localStorage.setItem("New Todo", JSON.stringify(todoArr)); 
+    showTodosAll(); 
+    showTodosToday();
+    showNoOfTodosOnCalendar();
+    addBtn.classList.remove("active");
 }
 
 /**
@@ -56,8 +60,8 @@ function pressedEnter(event) {
 /** Retrieve data from localstorage */
 function getTodoList() {
     let getLocalStorage = localStorage.getItem("New Todo");
-    if(getLocalStorage === null){ 
-        todoArr = [] 
+    if (getLocalStorage === null) {
+        todoArr = [];
     } else{
         todoArr = JSON.parse(getLocalStorage); 
     }
@@ -75,19 +79,53 @@ function showTodosToday() {
 
     let newLiTag = '';
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date().toDateString() });
-    filter.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
-                ;
+    filter.forEach((todoItem) => {
+        const indexInAll = todoArr.indexOf(todoItem);
+        newLiTag += `<li>${todoItem.description}<span class="edit" onclick="editTask(${indexInAll})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${indexInAll})";><i class="fas fa-trash"></i></span></li>`
     });
-    todoListToday.innerHTML = newLiTag;
+    todoListToday.innerHTML = newLiTag; 
     inputBox.value = ""; 
     dateBox.value = "";
 
     pendingNumber.textContent = filter.length;
-    if(filter.length > 0){ 
-        deleteAllTodaysTodoBtn.classList.add("active");
-    } else{
+    if (filter.length > 0) { 
+        deleteAllTodaysTodoBtn.classList.add("active"); 
+    } else {
         deleteAllTodaysTodoBtn.classList.remove("active");
+    }
+}
+
+/**
+ * Selects the date that the user press, filter the todos and adds new li tag inside ul tag
+ * @param {String} selectedDate 
+ */
+function showTodosSelectedDate(selectedDate) {
+    let todoArr = getTodoList();
+    const todoListSelected = document.querySelector('.todoList-selected');
+    const todoListTitle = document.querySelector('.selected');
+
+    let newLiTag = '';
+    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
+    filter.forEach((todoItem) => {
+        const indexInAll = todoArr.indexOf(todoItem);
+        newLiTag += `<li>${todoItem.description}<span class="edit" onclick="editTask(${indexInAll})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${indexInAll})";><i class="fas fa-trash"></i></span></li>`
+    });
+    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
+    todoListSelected.innerHTML = newLiTag; 
+
+    let icon = todoListTitle.nextElementSibling;
+    if (filter.length > 0) { 
+        icon.classList.remove("disable");
+        toggleTodo(event);
+        console.log('1');
+    } else {  // else if (filter.length === 0) 
+        icon.classList.add("disable");
+        console.log('2');
+    }
+    
+    if (todoListTitle.innerHTML !== 'Selected Date') {
+        todoListTitle.innerHTML == 'Selected Date';
+        if (filter.length === 0);
     }
 }
 
@@ -100,36 +138,37 @@ function showTodosAll() {
     todoArr.forEach((element, index) => {
         newLiTag += `<li>${element.description}<p class="date-display">${element.date}</p><span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span> <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
     });
-    todoList.innerHTML = newLiTag;
-    inputBox.value = "";
+    todoList.innerHTML = newLiTag; 
+    inputBox.value = ""; 
 }
 
 /**
  * Deletes particular todo and updates local storage 
  * @param {Number} index 
  */
-function deleteTask(index) {
+ function deleteTask(index) {
     let getLocalStorage = localStorage.getItem("New Todo");
-    todoArr = JSON.parse(getLocalStorage); 
-    todoArr.splice(index, 1);
+    todoArr = getTodoList();
+    todoArr.splice(index, 1); 
     localStorage.setItem("New Todo", JSON.stringify(todoArr));
-    showTodosAll();
+    showTodosAll(); 
     showTodosToday();
     showTodosSelectedDate(); 
+    showNoOfTodosOnCalendar();
 }
 
 /**
  * Pushes inputBox and dateBox value back to input and replaces with new value
  * @param {Number} index 
  */
-function editTask(index) {
+ function editTask(index) {
     const inputBox = document.querySelector(".inputField input");
     const dateBox = document.querySelector(".todo-date");
-    let getLocalStorage = localStorage.getItem("New Todo");
-    todoArr = JSON.parse(getLocalStorage);
+    let todoArr = getTodoList();
     inputBox.value = todoArr[index].description;
     dateBox.value = todoArr[index].date;
-    todoArr.splice(index, 1);
+    isEditing = true;
+    editIndex = index;
     localStorage.setItem("New Todo", JSON.stringify(todoArr));
     dateBox.scrollIntoView();
     validateInput();
@@ -138,39 +177,11 @@ function editTask(index) {
 
 /** Deletes all todos and updates local storage */
 function deleteAllTodaysTodo() {
-    let getLocalStorage = localStorage.getItem("New Todo");
-    todoArr = JSON.parse(getLocalStorage); 
+    let todoArr = getTodoList();
     const filter = todoArr.filter(element => { return new Date(element.date).toDateString() !== new Date().toDateString() });
-    todoArr = filter 
+    todoArr = filter;
     localStorage.setItem("New Todo", JSON.stringify(todoArr));
     showTodosToday(); 
     showTodosAll();
     showNoOfTodosOnCalendar();
 }
-
-/**
- * Selects the date that the user press, filter the todos and adds new li tag inside ul tag
- * @param {String} selectedDate 
- */
-function showTodosSelectedDate(selectedDate) {
-    
-    const todoListSelected = document.querySelector('.todoList-selected');
-    const todoListTitle = document.querySelector('.selected');
-    let todoArr = getTodoList();
-    let newLiTag = '';
-    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
-    filter.forEach((element, index) => {
-        newLiTag += `<li>${element.description}<span class="edit" onclick="editTask(${index})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${index})";><i class="fas fa-trash"></i></span></li>`
-    });
-    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
-    todoListSelected.innerHTML = newLiTag;
-    
-    let icon = todoListTitle.nextElementSibling;
-    if (filter.length > 0) { 
-        icon.classList.remove("disable");
-        toggleTodo(event);
-    } else {
-        icon.classList.add("disable");
-    }
-}
-
