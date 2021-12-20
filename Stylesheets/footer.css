@@ -8,3 +8,21 @@ footer {
     font-size: 0.7rem;
     align-items: center;
 }
+
+a:link {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: #43547B;
+    margin: 3px;
+    font-size: 11px;
+}
+
+a:visited {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: #43547B;
+}
+
+a:hover {
+    color: #F5EAEC;
+}
