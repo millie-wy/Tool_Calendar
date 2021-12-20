@@ -126,6 +126,12 @@
     pointer-events: none;
 }
 
+.inputField button:hover {
+    background: #8da1cf;
+    color: white;
+    transition: .3s;
+}
+
 .inputField button.active {
     opacity: 1;
     pointer-events: auto;
@@ -195,6 +201,12 @@
     padding: 0.2rem 0.6rem;
     opacity: 0.37;
     pointer-events: none;
+}
+
+#clear-all-btn:hover {
+    background: #8da1cf;
+    color: white;
+    transition: .3s;
 }
 
 #todo-footer button.active {
