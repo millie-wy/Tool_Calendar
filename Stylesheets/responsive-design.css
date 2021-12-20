@@ -77,5 +77,6 @@
 @media (max-width: 600px) {
 
     .calendar { display: none; }
-
+    footer { display: flex; flex-wrap: wrap;}
 }
+
