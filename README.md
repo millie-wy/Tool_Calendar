@@ -9,4 +9,4 @@ Wing Yan Cheung, [Github](https://github.com/millie-wy)
 </br>
 Fia Andersson, [Github](https://github.com/fiababiakandersson)
 
-Medieinstitutet, 2021
+Medieinstitutet, Front End Developer 2021
