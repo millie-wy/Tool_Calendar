@@ -97,35 +97,43 @@ function showTodosToday() {
 
 /**
  * Selects the date that the user press, filter the todos and adds new li tag inside ul tag
- * @param {String} selectedDate 
+ * @param {Date} selectedDate 
  */
 function showTodosSelectedDate(selectedDate) {
     let todoArr = getTodoList();
     const todoListSelected = document.querySelector('.todoList-selected');
     const todoListTitle = document.querySelector('.selected');
-
-    let newLiTag = '';
-    const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
-    filter.forEach((todoItem) => {
-        const indexInAll = todoArr.indexOf(todoItem);
-        newLiTag += `<li>${todoItem.description}<span class="edit" onclick="editTask(${indexInAll})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${indexInAll})";><i class="fas fa-trash"></i></span></li>`
-    });
-    todoListTitle.innerHTML = new Date(selectedDate).toDateString();
-    todoListSelected.innerHTML = newLiTag; 
-
+    let dayBtn = event.target;
     let icon = todoListTitle.nextElementSibling;
-    if (filter.length > 0) { 
-        icon.classList.remove("disable");
-        toggleTodo(event);
-        console.log('1');
-    } else {  // else if (filter.length === 0) 
+
+    if (dayBtn == event.target) {
+        dayBtn.classList.add('active-color');
+        console.log('hi');
+        } else {
+        dayBtn.classList.remove('active-color');
+        console.log('bye')
+        }
+
+    if (todoListTitle.innerHTML === selectedDate.toDateString()) {
+        todoListTitle.innerHTML = 'Selected Date';
+        todoListSelected.innerHTML = '';
         icon.classList.add("disable");
-        console.log('2');
-    }
-    
-    if (todoListTitle.innerHTML !== 'Selected Date') {
-        todoListTitle.innerHTML == 'Selected Date';
-        if (filter.length === 0);
+        dayBtn.classList.remove('active-color');
+    } else {
+        let newLiTag = '';
+        const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(selectedDate).toDateString() });
+        filter.forEach((todoItem) => {
+            const indexInAll = todoArr.indexOf(todoItem);
+            newLiTag += `<li>${todoItem.description}<span class="edit" onclick="editTask(${indexInAll})";><i class="fas fa-edit"></i></span>  <span class="trash" onclick="deleteTask(${indexInAll})";><i class="fas fa-trash"></i></span></li>`
+        });
+        todoListTitle.innerHTML = selectedDate.toDateString();
+        todoListSelected.innerHTML = newLiTag; 
+        if (filter.length > 0) { 
+            icon.classList.remove("disable");
+            toggleTodo(event);
+        } else { 
+            icon.classList.add("disable");
+        }
     }
 }
 
