@@ -34,6 +34,10 @@ main {
     font-size: 2rem;
 }
 
+.month i:hover {
+    color: #7f94c5;
+}
+
 .month h1 { 
     text-align: center;
     text-transform: uppercase; 
@@ -88,8 +92,6 @@ main {
 .prev-date, .next-date { 
     opacity: 0.5; 
 }
-
-
 
 .today { 
     background-color: #e4d2d5; 
