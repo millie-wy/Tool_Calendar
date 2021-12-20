@@ -226,3 +226,7 @@
     padding: .4rem;
     cursor: pointer;
 }
+
+.active-color {
+    background: #eedde1;
+}

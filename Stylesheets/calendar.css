@@ -84,7 +84,7 @@ main {
     flex-direction: column;
     justify-content: space-between; 
     align-items: center; 
-    transition: background-color 0.2s ease 0s; 
+    transition: background-color 0.05s ease 0s; 
     position: relative;
     cursor: pointer;
 }

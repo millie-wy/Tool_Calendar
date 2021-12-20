@@ -117,7 +117,7 @@ function clickCalendarDay() {
     dayBtns.forEach(dayBtn => {
         dayBtn.addEventListener('click', getFirstClassNameOfDay);
         })
-    }
+}
 
 /** Retrieves one fo the class names and converts it to date string */
 function getFirstClassNameOfDay() {
