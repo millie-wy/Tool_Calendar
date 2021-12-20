@@ -70,6 +70,10 @@
     .todoToday, .todo-selected, .todo-all { max-width: unset; }
     .calendar { width: 95%;}
 
+    footer {
+        position: static !important;
+    }
+
 }
 
 /* Extra small devices 600px and below */
@@ -77,6 +81,6 @@
 @media (max-width: 600px) {
 
     .calendar { display: none; }
-    footer { display: flex; flex-wrap: wrap;}
+    footer { position: absolute !important; }
 }
 
