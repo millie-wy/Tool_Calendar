@@ -96,6 +96,7 @@ function showTodosToday() {
         deleteAllTodaysTodoBtn.classList.remove("active");
     }
 }
+
 /** Unselect a day from todo selected */
 function unselectSelectedDate(){
     const todoListSelected = document.querySelector('.todoList-selected');

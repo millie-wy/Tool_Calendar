@@ -32,14 +32,15 @@
     <header class="flex justify-center">
         <h1>My Calendar</h1>
     </header>
+
     <aside>
         <div id="intro-container" class="flex col justify-center text-center">
             <div class="intro-background">
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
                 <lottie-player id="lottie" background="transparent" speed="0.5" loop autoplay></lottie-player> 
             </div>
-            <h2 id="current-date"></h2>
-            <h3 id="current-time"></h3>
+            <h2 id="current-date"><!-- content injected by Javascript intro.js --></h2>
+            <h3 id="current-time"><!-- content injected by Javascript intro.js --></h3>
         </div>
         <div id="todo-container" class="flex col justify-center align-items">
             <div class="todoToday">
@@ -50,7 +51,11 @@
                     <!--Todo comes from localstorage--> 
                 </ul>
                 <div id="todo-footer" class="footer flex align-items">
-                    <span><span class="pendingNumber"></span> pending today</span>
+                    <span>
+                        <span class="pendingNumber">
+                            <!-- content injected by Javascript todo.js -->
+                        </span> pending today
+                    </span>
                     <button id="clear-all-btn">Clear all</button>
                 </div>
             </div>
@@ -64,14 +69,21 @@
             </div>
             <div class="todo-all">
                 <div class="flex row spacebetween">
-                    <h3 class="todo-date-title">All<span class="pending-all">(<span class="pending-all-num"></span>)</span></h3><i class="todo-fold fas fa-plus-circle"></i>
+                    <h3 class="todo-date-title">All
+                        <span class="pending-all">(
+                            <span class="pending-all-num">
+                                <!-- content injected by Javascript todo.js -->
+                            </span>)
+                        </span>
+                    </h3>
+                    <i class="todo-fold fas fa-plus-circle"></i>
                 </div>
                 <ul class="todoList todoList-all">
                         <!--Todo comes from localstorage--> 
                 </ul>
             </div>
             <div class="inputField flex col">
-                <input type="text" placeholder="Add your new to do"  class="todo-item">
+                <input type="text" placeholder="Add your new to do" class="todo-item">
                 <div class="input-date-and-button flex row">
                     <input type="date" class="todo-date" min="1990-01-01">
                     <button class="save-todo">Submit</button>
@@ -84,6 +96,7 @@
             <div class="month">
                 <i class="fas fa-angle-left prev"></i>
                 <div class="date">
+                    <!-- content in this div injected by Javascript calendar.js -->
                     <h1></h1>
                     <p></p>
                     <h3></h3>
