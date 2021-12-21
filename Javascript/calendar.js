@@ -4,6 +4,9 @@ function initCalendar(currentDate) {
     showNoOfTodosOnCalendar();
 }
 
+/** to keep track on the date selected on the calendar */
+let selectedDate = null;
+
 /**
  * Renders the calendar
  * @param {Date} currentDate 
@@ -119,12 +122,33 @@ function clickCalendarDay() {
         })
 }
 
+/** Prints background color on the seletced day div */
+function createActiveDayClass() {
+    let dayBtn = event.target;
+    dayBtn.classList.add('active-color');
+}
+
+/** Removes background color if the day div is unselected / non-active */
+function clearActiveDayClass() {
+    const daysWithActiveColor = document.querySelectorAll('.active-color');
+    daysWithActiveColor.forEach(dayWithActiveColor => {
+        dayWithActiveColor.classList.remove('active-color');
+    }) 
+}
+
 /** Retrieves one fo the class names and converts it to date string */
 function getFirstClassNameOfDay() {
     let dayBtn = event.target;
     let classNameOfDay = dayBtn.className.split(" ")[0];
-    const selectedDate = new Date(classNameOfDay);
-    showTodosSelectedDate(selectedDate);
+    let newDate = new Date(classNameOfDay);
+    if ( selectedDate !== null && newDate.toDateString() === selectedDate.toDateString()) {
+        unselectSelectedDate();
+    } else {
+        showTodosSelectedDate(newDate);
+    }
+    selectedDate = newDate;
+    clearActiveDayClass();
+    createActiveDayClass();
 }
 
 /** Updates the todo reminder for each calendar days in the current month */

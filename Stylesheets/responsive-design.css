@@ -69,11 +69,7 @@
 
     .todoToday, .todo-selected, .todo-all { max-width: unset; }
     .calendar { width: 95%;}
-
-    footer {
-        position: static !important;
-    }
-
+    footer { position: static !important; }
 }
 
 /* Extra small devices 600px and below */

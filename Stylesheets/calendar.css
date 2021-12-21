@@ -98,6 +98,11 @@ main {
     border-radius: 3px; 
 }
 
+.active-color {
+    background: #eedde1;
+    border-radius: 3px; 
+}
+
 .holiday-reminder { 
     width: 100%;
     background-color: #8da1cf; 

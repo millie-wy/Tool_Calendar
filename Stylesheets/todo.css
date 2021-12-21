@@ -13,7 +13,6 @@
     padding: 1rem;
 }
 
-
 .todo-fold {
     font-size: 1.5rem;
     cursor: pointer;
@@ -67,6 +66,10 @@
 .todoList-all li {
     flex-direction: column;
     line-height: 30px;
+}
+
+.pending-all {
+    margin-left: 0.2rem;
 }
 
 .inputField {
@@ -220,13 +223,8 @@
 
 /* Styling for date input */
 
-
 ::-webkit-calendar-picker-indicator {
     color: #43547B;
     padding: .4rem;
     cursor: pointer;
-}
-
-.active-color {
-    background: #eedde1;
 }
