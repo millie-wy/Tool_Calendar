@@ -151,7 +151,9 @@ function getFirstClassNameOfDay() {
     createActiveDayClass();
 }
 
-/** Updates the todo reminder for each calendar days in the current month */
+/** Updates the todo reminder for each calendar days in the current month 
+ * first loop covers the case when user removes the last todo, the decond removes the duplicated when there is multiple todos on one date
+*/
 function showNoOfTodosOnCalendar() {
     let days = document.getElementsByClassName('day'); 
     let daysArr = [];
@@ -159,13 +161,16 @@ function showNoOfTodosOnCalendar() {
         daysArr = (days[i].className.split(" ")[0]);
 
         let dayDiv = document.getElementsByClassName(daysArr);
-        removeTodoReminder(dayDiv[0]);
+        for (let x = 0; x < dayDiv.length; x++ ) {
+            removeTodoReminder(dayDiv[0]);
+            }
 
         let todoArr = getTodoList();
         const filter = todoArr.filter(element => { return new Date(element.date).toDateString() == new Date(daysArr).toDateString() });
         filter.forEach((element, index) => {
             let todoNumber = index + 1;
             let dayDiv = document.getElementsByClassName(element.date);
+            removeTodoReminder(dayDiv[0]);
             printTodoToCalendar(dayDiv[0], todoNumber);
         });
     } 
@@ -189,7 +194,7 @@ function showNoOfTodosOnCalendar() {
  */
 function removeTodoReminder(dayDiv) {
     const todoWithReminder = dayDiv.getElementsByClassName('todo-reminder');
-    if (todoWithReminder.length > 0) {
+    if (todoWithReminder.length > 0 ) {
         dayDiv.removeChild(todoWithReminder[0]);
     }
 }
