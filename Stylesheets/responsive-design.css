@@ -69,14 +69,16 @@
 
     .todoToday, .todo-selected, .todo-all { max-width: unset; }
     .calendar { width: 95%;}
-    footer { position: static !important; }
+    footer { position: static; }
 }
 
 /* Extra small devices 600px and below */
 
 @media (max-width: 600px) {
 
-    .calendar { display: none; }
-    footer { position: absolute !important; }
+    .calendar, .todo-selected { display: none; }
+    footer { position: absolute; 
+    white-space:nowrap;
+    font-size: 0.55rem; }
 }
 
